@@ -6,31 +6,36 @@ class BooksController < Spree::BaseController
 			@book_types = BookType.where('parent_id=?', p.id)
 			if params[:p] == 'simplebooktype'
 				render 'book_types.xml.erb'
+			elsif ['booktypeinfo', 'changxiao', 'BestTopChangXiao', 'bestbook', 'goodbook', 'GoodClassisTuijian', 'tuijianbook', 'classisbook'].include? params[:p]
+				@types_num, @books_num = 6, 5
+				@types_num, @books_num = 12, 2 if params[:p] == 'booktypeinfo'
+				@types_num = 3 if params[:p] == 'BestTopChangXiao'
+				render 'book_types_info.xml.erb'
 			elsif params[:p] == 'booktypeinfo'
 				render 'book_types_info.xml.erb'
 			elsif params[:p] == 'topbook'
 				render 'book_top.xml.erb'
+			elsif params[:p] == 'changxiao'
+				render 'book_types_info_top_sale.xml.erb'
+			elsif params[:p] == 'BestTopChangXiao'
+				render 'book_types_info_top_sale.xml.erb'
 			end
-			return
-		end
-		if params[:p]
-			if ['topbook', 'changxiao', 'bestbook', 'GoodClassisTuijian', 'goodbook', 'classisbook', 'tuijianbook'].include? params[:p]
-				render 'book_top.xml.erb'
-			else
-				render 'book_list.xml.erb'
-			end
+
 		elsif params[:bookid]
-			render 'book_detail.xml.erb'
+			render 'book_detail.xml.erb'	
 		elsif params[:bookchapterid]
 			render 'book_chapter.xml.erb'
 		elsif params[:booktypeid]
-			render 'book_type.xml.erb'
+			tp = BookType.find_by_id(params[:booktypeid])
+			@books = []
+			@books = tp.books if tp
+			render 'books.xml.erb'
 		elsif params[:chapterid] && params[:page]
-			render 'book_content.text.erb'
+			ch = BookChaptor.find(params[:chapterid])
+			render :text => ch.content	
 		elsif params[:sbookName]
+			@books = Book.where('bookname like \'%' + params[:sbookName] + '%\'')
 			render 'book_search.xml.erb'
 		end
-		
 	end
-		
 end

@@ -22,6 +22,7 @@
 			<th>views</th>
 			<th>picurl</th>
 			<th>status</th>
+			<th>OP</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -30,14 +31,15 @@
 			<td><%= book.id %></td>
 			<td><%= book.bookname %></td>
 			<td><%= book.author %></td>
-			<td><%= book.bookinfo %></td>
+			<td width='300'><%= book.bookinfo %></td>
 			<td><%= book.hot %></td>
 			<td><%= book.views %></td>
 			<td><%= book.picurl %></td>
 			<td><%= book.status %></td>
 
 			<td class="actions">
-
+				<a href="books/<%= book.id %>">show</a>
+				&nbsp;
 		        <%= link_to_edit book unless book.status == 0  %>
 		        &nbsp;
 		        <%= link_to_clone book %>

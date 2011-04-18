@@ -3,7 +3,7 @@
 <script type="text/javascript">
 function add_book_to_booktype(type_id){
 	var book_id = $('#book_id').val();
-	$.get('2/add', {book_id: book_id}, function(data){ alert(data);});
+	$.get('' + type_id + '/add', {book_id: book_id}, function(data){ alert(data);});
 }
 </script>
 <h2><%= @book_type.name %> (ID:<%= @book_type.id %>)</h2>

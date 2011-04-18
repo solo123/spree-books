@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Books>
+	<% book = Book.find_by_id(params[:bookchapterid])
+	   if book
+	   	BookChaptor.find_all_by_book_id(book.id).each do |ch|
+	-%>
+	<Book>
+		<CHAPTERID><%= ch.id %></CHAPTERID>
+		<CHAPTERNAME><%= ch.chaptorname %></CHAPTERNAME>
+		<LENGTH><%= ch.length %></LENGTH>
+		<PAGE><%= ch.page %></PAGE>
+	</Book>
+	<% end
+	  end
+	-%>
+</Books>

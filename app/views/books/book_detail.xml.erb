@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Books>
+	<% book = Book.find_by_id(params[:bookid])
+	   if book 
+	%>
+	<Book>
+		<BOOKNAME><%= book.bookname %></BOOKNAME>
+		<AUTHOR><%= book.author %></AUTHOR>
+		<BOOKINTRO><%= book.bookinfo %></BOOKINTRO>
+		<STATUS><%= book.status %></STATUS>
+		<HOT><%= book.hot %></HOT>
+		<PICURL><%= book.picurl %></PICURL>
+	</Book>
+	<% end %>
+</Books>

@@ -1,5 +1,46 @@
 <%= render :partial => 'admin/shared/book_sub_menu' %>
 
-TODO - show product details here <br/><br/>
+<h1>(id: <%= @book.id %>) <%= @book.bookname %></h1>
+
+<div class='toolbar'>
+  <ul class='actions'>
+    <li id="new_book_chaptor_link">
+      <%= button_link_to t("new_book_chaptor"), '/admin/book_chaptors/new' %>
+    </li>
+  </ul>
+  <br class='clear' />
+</div>
+<table class="index">
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>length</th>
+			<th>page</th>
+			<th>OP</th>
+
+		</tr>
+	</thead>
+	<tbody>
+		<% BookChaptor.find_all_by_book_id(@book.id).each do |bc| %>
+		<tr>
+			<td><%= bc.id %></td>
+			<td><%= bc.chaptorname %></td>
+			<td><%= bc.length %></td>
+			<td><%= bc.page %></td>
+
+			<td class="actions">
+
+		        <%= link_to_edit bc %>
+		        &nbsp;
+		        <%= link_to_clone bc %>
+		        &nbsp;
+		        <%= link_to_delete bc %>
+
+    		</td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>
+
 
 <%= render :partial => 'admin/shared/show_resource_links' %>

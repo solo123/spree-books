@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Books>
+	<% @books.each do |book| -%>
+	<Book>
+		<BOOKID><%= book.id %></BOOKID>
+		<BOOKNAME><%= book.bookname %></BOOKNAME>
+		<AUTHOR><%= book.author %></AUTHOR>
+		<TYPE>0</TYPE>
+	</Book>
+	<% end -%>
+</Books>

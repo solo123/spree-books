@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Books>
-	<% @book_types.each do |t| 
-	   books = t.books.limit(2)
+	<% @book_types.limit(@types_num).each do |t| 
+	   books = t.books.order('hot desc').limit(@books_num)
 		 if books.count > 0
 		   books.each do |book|
 	-%>
