@@ -1,0 +1,53 @@
+<%= render :partial => 'admin/shared/book_sub_menu' %>
+
+<div class='toolbar'>
+  <ul class='actions'>
+    <li id="new_book_link">
+      <%= button_link_to t("new_book"), new_object_url %>
+    </li>
+  </ul>
+  <br class='clear' />
+</div>
+
+<h1><%= "#{t("actions.listing")} #{t("books")}" %></h1>
+
+<table class="index">
+	<thead>
+		<tr>
+			<th>ID</th>
+			<th>Name</th>
+			<th>Author</th>
+			<th>Info</th>
+			<th>hot</th>
+			<th>views</th>
+			<th>picurl</th>
+			<th>status</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% collection.each do |book| %>
+		<tr>
+			<td><%= book.id %></td>
+			<td><%= book.bookname %></td>
+			<td><%= book.author %></td>
+			<td><%= book.bookinfo %></td>
+			<td><%= book.hot %></td>
+			<td><%= book.views %></td>
+			<td><%= book.picurl %></td>
+			<td><%= book.status %></td>
+
+			<td class="actions">
+
+		        <%= link_to_edit book unless book.status == 0  %>
+		        &nbsp;
+		        <%= link_to_clone book %>
+		        &nbsp;
+		        <%= link_to_delete book unless book.status == 0  %>
+
+    		</td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>
+<%#= will_paginate(:previous_label => "&#171; #{t('previous')}", :next_label => "#{t('next')} &#187;") %>
+

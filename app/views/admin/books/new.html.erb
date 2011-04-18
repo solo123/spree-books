@@ -1,0 +1,52 @@
+<%= render :partial => 'admin/shared/book_sub_menu' %>
+
+<%= render "shared/error_messages", :target => @book %>
+
+<%= form_for(:book,  :url => collection_url, :html => { :multipart => true }) do |f| %>
+<fieldset>
+
+  <%= f.field_container :bookname do %>
+    <%= f.label :name, t("bookname") %> <span class="required">*</span><br />
+    <%= f.text_field :bookname, :class => 'fullwidth title'  %>
+    <%= f.error_message_on :bookname %>
+  <% end %>
+
+  <div class="yui-gb">
+    <div class="yui-u first">
+
+
+
+      <p>
+        hello, here.
+      </p>
+
+    </div>
+    <div class="yui-u">
+
+      <%= f.field_container :author do %>
+        <%= f.label :author, t("author")%><br />
+        <%= f.text_field :author  %>
+        <%= f.error_message_on :author%>
+      <% end %>
+      
+      <%= f.field_container :bookinfo do %>
+        <%= f.label :bookinfo, t("bookinfo")%><br />
+        <%= f.text_field :bookinfo  %>
+        <%= f.error_message_on :bookinfo%>
+      <% end %>
+
+      <%= f.field_container :picurl do %>
+        <%= f.label :picurl, t("picurl")%><br />
+        <%= f.text_field :picurl  %>
+        <%= f.error_message_on :picurl%>
+      <% end %>
+
+
+
+    </div>
+  </div>
+
+  <%= render :partial => 'admin/shared/new_resource_links' %>
+
+</fieldset>
+<% end %>

@@ -1,0 +1,10 @@
+<h2>Visit Histories</h2>
+
+<% @his.each do |h| %>
+<div>
+	<p><%= h.url %></p>
+	<p><%= raw h.head %></p>
+	<p><%= h.created_at %></p>
+	<p><%= h.updated_at %></p>
+</div>
+<% end %>

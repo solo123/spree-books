@@ -1,0 +1,34 @@
+<%= render :partial => 'admin/shared/book_sub_menu' %>
+<%= render "shared/error_messages", :target => @book_type %>
+
+<%= form_for(:book_type,  :url => collection_url, :html => { :multipart => true }) do |f| %>
+<fieldset>
+
+
+
+  <div class="yui-gb">
+    <div class="yui-u first">
+
+  <%= f.field_container :parent_id do %>
+    <%= f.label :parent_id, t("parent_id") %> <span class="required">*</span><br />
+    <%= f.text_field :parent_id, :class => 'fullwidth title'  %>
+    <%= f.error_message_on :parent_id %>
+  <% end %>
+  <%= f.field_container :name do %>
+    <%= f.label :name, t("name") %> <span class="required">*</span><br />
+    <%= f.text_field :name, :class => 'fullwidth title'  %>
+    <%= f.error_message_on :name %>
+  <% end %>
+  <%= f.field_container :permalink do %>
+    <%= f.label :permalink, t("permalink") %> <span class="required">*</span><br />
+    <%= f.text_field :permalink, :class => 'fullwidth title'  %>
+    <%= f.error_message_on :permalink %>
+  <% end %>
+
+    </div>
+  </div>
+
+  <%= render :partial => 'admin/shared/new_resource_links' %>
+
+</fieldset>
+<% end %>

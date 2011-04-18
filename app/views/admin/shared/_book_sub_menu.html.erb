@@ -1,0 +1,9 @@
+<% content_for :sub_menu do %>
+  <ul id="sub_nav">
+    <%= hook :admin_book_sub_tabs do %>
+      <%= tab :books, :match_path => '/books' %>
+      <%= tab :book_chaptors, :match_path => '/book_chaptors' %>
+      <%= tab :book_types, :match_path => '/book_types', :css_class => 'last' %>
+    <% end %>
+  </ul>
+<% end %>
