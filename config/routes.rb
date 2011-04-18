@@ -4,9 +4,7 @@ Rails.application.routes.draw do
   match 'cminterface/sms/sync.aspx' => 'demo#sync'
   
   namespace :admin do
-    resources :books do
-    	match 'chaptor' => 'book_chaptors#new'
-    end
+    resources :books
     resources :book_chaptors
     resources :book_types do
     	match 'add' => 'book_types#addtype'
