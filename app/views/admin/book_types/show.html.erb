@@ -1,5 +1,23 @@
 <%= render :partial => 'admin/shared/book_sub_menu' %>
 
-TODO - show product details here <br/><br/>
+<script type="text/javascript">
+function add_book_to_booktype(type_id){
+	var book_id = $('#book_id').val();
+	$.get('2/add', {book_id: book_id}, function(data){ alert(data);});
+}
+</script>
+<h2><%= @book_type.name %> (ID:<%= @book_type.id %>)</h2>
+
+<ul>
+	<% @book_type.books.each do |book| %>
+	<li><%= book.bookname %></li>
+	<% end %>
+</ul>
+
+<p>
+	添加图书ID：<input type="text" id="book_id"></input>
+	<input type="button" value="Add" onclick="add_book_to_booktype('<%= @book_type.id %>');return false;">
+</p>
+
 
 <%= render :partial => 'admin/shared/show_resource_links' %>

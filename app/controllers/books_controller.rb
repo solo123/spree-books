@@ -11,6 +11,7 @@ class BooksController < Spree::BaseController
 			elsif params[:p] == 'topbook'
 				render 'book_top.xml.erb'
 			end
+			return
 		end
 		if params[:p]
 			if ['topbook', 'changxiao', 'bestbook', 'GoodClassisTuijian', 'goodbook', 'classisbook', 'tuijianbook'].include? params[:p]
