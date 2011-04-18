@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  root :to => 'home#index'
   match '/visit' => 'home#list'
   match '/vamp/mtkbook/details.aspx' => 'books#details'
   match 'cminterface/sms/sync.aspx' => 'demo#sync'
