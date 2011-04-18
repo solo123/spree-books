@@ -8,6 +8,8 @@ class BooksController < Spree::BaseController
 				render 'book_types.xml.erb'
 			elsif params[:p] == 'booktypeinfo'
 				render 'book_types_info.xml.erb'
+			elsif params[:p] == 'topbook'
+				render 'book_top.xml.erb'
 			end
 		end
 		if params[:p]

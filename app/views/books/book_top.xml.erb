@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Books>
+	<% @book_types.limit(6).each do |t| 
+	   books = t.books.limit(5)
+		 if books.count > 0
+		   books.each do |book|
+	-%>
+	<Book>
+		<BOOKTYPEID><%= t.id %></BOOKTYPEID>
+		<BOOKTYPE><%= t.name %></BOOKTYPE>
+		<BOOKID><%= book.id %></BOOKID>
+		<BOOKNAME><%= book.bookname %></BOOKNAME>
+		<BOOKINTRO><%= book.bookinfo %></BOOKINTRO>
+		<PICURL>http://61.144.195.168/resource/books/cover/<%= book.picurl %></PICURL>
+	</Book>
+	<%   end
+	   end
+	 end 
+	-%>
+</Books>
