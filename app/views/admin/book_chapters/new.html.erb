@@ -1,6 +1,6 @@
 <%= render :partial => 'admin/shared/book_sub_menu' %>
 
-<%= render "shared/error_messages", :target => @book_chaptor %>
+<%= render "shared/error_messages", :target => @book_chapter %>
 
 <%= form_for(:book_chapter,  :url => collection_url, :html => { :multipart => true }) do |f| %>
 <fieldset>

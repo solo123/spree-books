@@ -24,12 +24,11 @@
 		<% BookChapter.find_all_by_book_id(@book.id).each do |bc| %>
 		<tr>
 			<td><%= bc.id %></td>
-			<td><%= bc.chaptorname %></td>
+			<td><%= bc.chaptername %></td>
 			<td><%= bc.length %></td>
 			<td><%= bc.page %></td>
 
 			<td class="actions">
-
 		        <%= link_to_edit bc %>
 		        &nbsp;
 		        <%= link_to_clone bc %>
