@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   match '/vamp/mtkbook/details.aspx' => 'books#details'
   match 'cminterface/sms/sync.aspx' => 'books#sync'
   match '/resource/books/cover/:id.:format' => 'book_covers#show'
+  match '/resource/books/cover/' => 'book_covers#show'
   
   namespace :admin do
     resources :books
