@@ -1,3 +1,3 @@
-class Admin::BookChaptorsController < Admin::BaseController
+class Admin::BookChaptersController < Admin::BaseController
   resource_controller
 end

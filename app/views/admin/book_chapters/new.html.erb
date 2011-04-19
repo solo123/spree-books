@@ -2,7 +2,7 @@
 
 <%= render "shared/error_messages", :target => @book_chaptor %>
 
-<%= form_for(:book_chaptor,  :url => collection_url, :html => { :multipart => true }) do |f| %>
+<%= form_for(:book_chapter,  :url => collection_url, :html => { :multipart => true }) do |f| %>
 <fieldset>
   <%= f.field_container :book_id do %>
     <%= f.label :book_id, t("book_id") %> <span class="required">*</span><br />
@@ -14,10 +14,10 @@
   <div class="yui-gb">
     <div class="yui-u first">
 
-  <%= f.field_container :chaptorname do %>
-    <%= f.label :chaptorname, t("chaptorname") %> <span class="required">*</span><br />
-    <%= f.text_field :chaptorname, :class => 'fullwidth title'  %>
-    <%= f.error_message_on :chaptorname %>
+  <%= f.field_container :chaptername do %>
+    <%= f.label :chaptername, t("chaptername") %> <span class="required">*</span><br />
+    <%= f.text_field :chaptername, :class => 'fullwidth title'  %>
+    <%= f.error_message_on :chaptername %>
   <% end %>
 
       <%= f.field_container :length do %>
