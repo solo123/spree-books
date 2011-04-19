@@ -2,7 +2,7 @@
 <Books>
 	<% book = Book.find_by_id(params[:bookchapterid])
 	   if book
-	   	BookChaptor.find_all_by_book_id(book.id).each do |ch|
+	   	BookChapter.find_all_by_book_id(book.id).each do |ch|
 	-%>
 	<Book>
 		<CHAPTERID><%= ch.id %></CHAPTERID>

@@ -4,8 +4,8 @@
 
 <div class='toolbar'>
   <ul class='actions'>
-    <li id="new_book_chaptor_link">
-      <%= button_link_to t("new_book_chaptor"), '/admin/book_chaptors/new' %>
+    <li id="new_book_chapter_link">
+      <%= button_link_to t("new_book_chapter"), '/admin/book_chapters/new' %>
     </li>
   </ul>
   <br class='clear' />
@@ -21,7 +21,7 @@
 		</tr>
 	</thead>
 	<tbody>
-		<% BookChaptor.find_all_by_book_id(@book.id).each do |bc| %>
+		<% BookChapter.find_all_by_book_id(@book.id).each do |bc| %>
 		<tr>
 			<td><%= bc.id %></td>
 			<td><%= bc.chaptorname %></td>

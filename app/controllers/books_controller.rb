@@ -31,7 +31,7 @@ class BooksController < Spree::BaseController
 			@books = tp.books if tp
 			render 'books.xml.erb'
 		elsif params[:chapterid] && params[:page]
-			ch = BookChaptor.find(params[:chapterid])
+			ch = BookChapter.find(params[:chapterid])
 			render :text => ch.content	
 		elsif params[:sbookName]
 			@books = Book.where('bookname like \'%' + params[:sbookName] + '%\'')

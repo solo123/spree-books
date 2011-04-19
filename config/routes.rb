@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   
   namespace :admin do
     resources :books
-    resources :book_chaptors
+    resources :book_chapters
     resources :book_types do
     	match 'add' => 'book_types#addtype'
     end
