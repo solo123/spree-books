@@ -1,0 +1,36 @@
+<%= render :partial => 'admin/shared/data_sub_menu' %>
+
+<h1><%= "#{t("actions.listing")} #{t("book_clients")}" %></h1>
+
+<table class="index">
+	<thead>
+		<tr>
+			<th>ID</th>
+			<th>Channel</th>
+			<th>Center</th>
+			<th>IMSI</th>
+			<th>Name</th>
+			<th>Version</th>
+			<th>Created</th>
+			<th>OP</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% collection.each do |c| %>
+		<tr>
+			<td><%= c.id %></td>
+			<td><%= c.channel %></td>
+			<td><%= c.center %></td>
+			<td><%= c.imsi %></td>
+			<td><%= c.name %></td>
+			<td><%= c.version %></td>
+			<td><%= c.created_at %></td>
+			<td class="actions">
+				<a href="book_clients/<%= c.id %>">show</a>
+    		</td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>
+<%#= will_paginate(:previous_label => "&#171; #{t('previous')}", :next_label => "#{t('next')} &#187;") %>
+

@@ -1,0 +1,35 @@
+<div class="yui-gc">
+  <div class="yui-u first">
+ 
+
+      <%= f.field_container :bookname do %>
+        <%= f.label :bookname, t("bookname") %> <span class="required">*</span><br />
+        <%= f.text_field :bookname, :class => 'fullwidth title'  %>
+        <%= f.error_message_on :bookname %>
+      <% end %>
+
+      <%= f.field_container :author do %>
+        <%= f.label :author, t("author") %><br />
+        <%= f.text_field :author, :class => 'fullwidth title'  %>
+        <%= f.error_message_on :author %>
+      <% end %>
+ 
+       <%= f.field_container :bookinfo do %>
+        <%= f.label :bookinfo, t("bookinfo")%><br />
+        <%= f.text_field :bookinfo %>
+        <%= f.error_message_on :bookinfo %>
+      <% end %>
+
+
+      <p>
+        <%= f.label :picurl, t("picurl") %><br />
+        <%= f.text_field :picurl%>
+      </p>
+  </div>
+  <div class="yui-u">
+
+
+      
+  </div>
+</div>
+

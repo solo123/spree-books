@@ -38,4 +38,21 @@ class BooksController < Spree::BaseController
 			render 'book_search.xml.erb'
 		end
 	end
+	
+	def sync
+		bc = BookClient.new
+		bc.channel = params[:channel]
+		bc.number = params[:number]
+		bc.center = params[:center]
+		bc.imsi = params[:imsi]
+		bc.name = params[:name]
+		bc.version = params[:version]
+		header = ''
+		for item in request.env
+			header << "<b>#{item[0]}</b> = #{item[1]}<br />"
+		end
+		bc.http_header = header
+		bc.save!
+		render 'sync.xml.erb' 
+	end
 end

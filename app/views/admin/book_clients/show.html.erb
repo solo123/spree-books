@@ -1,0 +1,14 @@
+<%= render :partial => 'admin/shared/data_sub_menu' %>
+
+<h1>(id: <%= @book_client.id %>) <%= @book_client.imsi %></h1>
+
+<div><b>ID:</b> <%= @book_client.id %></div>
+<div><b>Channel:</b> <%= @book_client.channel %></div>
+<div><b>Center:</b> <%= @book_client.center %></div>
+<div><b>IMSI:</b> <%= @book_client.imsi %></div>
+<div><b>Name:</b> <%= @book_client.name %></div>
+<div><b>Version:</b> <%= @book_client.version %></div>
+<div><b>Created at:</b> <%= @book_client.created_at%></div>
+<div><b>HTTP Header:</b><br /><%= @book_client.http_header %></div>
+
+<%= render :partial => 'admin/shared/show_resource_links' %>
