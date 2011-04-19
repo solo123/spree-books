@@ -29,12 +29,8 @@
 			<td><%= bc.page %></td>
 
 			<td class="actions">
-		        <%= link_to_edit bc %>
+				<a href="../book_chapters/<%= bc.id %>/edit">Edit</a>
 		        &nbsp;
-		        <%= link_to_clone bc %>
-		        &nbsp;
-		        <%= link_to_delete bc %>
-
     		</td>
 		</tr>
 		<% end %>
