@@ -3,8 +3,7 @@ class ToolsController < Spree::BaseController
 		if params
 			s = ''
 			params.each do |k, v|
-				s << k.gsub(/>/, '&gt;').gsub(/</, '&lt;')
-				s << ' = '
+				s << "<b>#{k}</b> = "
 				s << v.gsub(/>/, '&gt;').gsub(/</, '&lt;')
 				s << '<br />'
 			end
