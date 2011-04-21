@@ -1,0 +1,8 @@
+<%#= render :partial => 'admin/shared/data_sub_menu' %>
+
+<% PostedData.order('created_at desc').limit(100).each do |p| %>
+<h2><%= p.created_at %></h2>
+<div><%= raw p.para %></div>
+<% end%>
+<%#= will_paginate(:previous_label => "&#171; #{t('previous')}", :next_label => "#{t('next')} &#187;") %>
+

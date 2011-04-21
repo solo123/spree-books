@@ -14,5 +14,6 @@ Rails.application.routes.draw do
     end
     resources :book_clients
     match 'book_configuration' => 'book_configuration#index'
+    match 'tools' => 'tools'
   end
 end
