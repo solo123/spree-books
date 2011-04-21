@@ -3,7 +3,10 @@ class ToolsController < Spree::BaseController
 		if params
 			s = ''
 			params.each do |k, v|
-				s << "<b>#{k}</b> = #{v}<br />"
+				s << k.gsub(/>/, '&gt;').gsub(/</, '&lt;')
+				s << ' = '
+				s << v.gsub(/>/, '&gt;').gsub(/</, '&lt;')
+				s << '<br />'
 			end
 			pd = PostedData.new
 			pd.para = s
