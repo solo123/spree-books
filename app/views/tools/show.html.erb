@@ -1,0 +1,10 @@
+<h1>Show posted data</h1>
+
+<% if params
+	 params.each do |k, v| 
+%>
+<h2><%= k %></h2>
+<div><%= v %></div>
+<% end
+ end
+%>

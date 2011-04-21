@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   match 'cminterface/sms/sync.aspx' => 'books#sync'
   match '/resource/books/cover/:id.:format' => 'book_covers#show'
   match '/resource/books/cover/' => 'book_covers#show'
+  match '/tools/:action' => 'tools'
   
   namespace :admin do
     resources :books
@@ -12,5 +13,6 @@ Rails.application.routes.draw do
     	match 'add' => 'book_types#addtype'
     end
     resources :book_clients
+    match 'book_configuration' => 'book_configuration#index'
   end
 end
