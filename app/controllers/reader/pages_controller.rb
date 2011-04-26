@@ -27,7 +27,11 @@ class Reader::PagesController < Spree::BaseController
 		if op == 'catalog'
 			render 'book_catalog.xml.erb'
 		elsif op == 'chapter'
-			@chapter = Chapter.find(params[:ch])
+			if params[:ch]
+				@chapter = Chapter.find(params[:ch])
+			else
+				@chapter = @book.book_chapters.first
+			end
 			render 'book_chapter.xml.erb'
 		else
 			render 'book_cover.xml.erb'
