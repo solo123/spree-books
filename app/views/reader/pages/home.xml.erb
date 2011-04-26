@@ -3,10 +3,20 @@
 	<header>Reader书城</header>
 	<content>
 		<link><text>1. 浏览历史</text><desc>图书浏览记录</desc><url>history</url></link>
-		<link><text>2. 热门推荐</text><desc>热门或高评价</desc><url>history</url></link>
-		<link><arrow>1</arrow><text>命运记事本 </text><desc>100%已读</desc><url>bookid=123</url></link>
-		<link><arrow>1</arrow><text>十全十美的闪婚 </text><desc>100%已读</desc><url>bookid=123</url></link>
-		<link><arrow>1</arrow><text>斗破苍穹 </text><desc>100%已读</desc><url>bookid=123</url></link>
-		<text>玄幻玄幻《奇客》世界上有两件东西能够深深抓住你的心，从此你的命运就开始改写...\n按*键阅读详情\n</text>
+		<link><text>2. 热门推荐</text><desc>热门或高评价</desc><url>hot_books</url></link>
+		<link><text>3. 版权图书</text><desc>付费图书</desc><url>paid_books</url></link>
+		<link><text>4. 我的书架</text><desc>图书收藏夹</desc><url>favorite</url></link>
+		<link><text>5. 系统设置</text><desc>字号、颜色等</desc><url>setting</url></link>
+		<link><text>6. 快速搜索</text><desc>关键字查找</desc><url>search</url></link>
+		<% Book.order('hot desc').limit(20).each do |b| -%> 
+		<link>
+			<arrow>1</arrow>
+			<text><%= b.bookname %></text>
+			<desc>共<%= b.book_chapters.length %>章</desc>
+			<url>books/<%= b.id %></url>
+		</link>
+		<% end -%>
+		<% book = Book.order('hot desc').first -%>
+		<text><%= book.bookinfo %></text>
 	</content>
 </page>
