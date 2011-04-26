@@ -2,8 +2,8 @@
 <page>
 	<header>《<%= @book.bookname %>》</header>
 	<content>
-		<link><text>1. 阅读</text><url>/book/1</url></link>
-		<link><text>2. 目录</text><url>/book/1/catalog</url></link>
+		<link><text>1. 阅读</text><url>/books/1</url></link>
+		<link><text>2. 目录</text><url>/books/1/catalog</url></link>
 		<text>作者：<%= @book.author %></text>
 		<text>分类：<% @book.book_types.to_s %></text>
 		<text><%= @book.bookinfo %></text>

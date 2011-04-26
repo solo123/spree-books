@@ -2,8 +2,13 @@
 <page>
 	<header>我的浏览历史</header>
 	<content>
-		<link><arrow>1</arrow><text>命运记事本</text><desc>100%已读</desc><url>bookid=123</url></link>
-		<link><arrow>1</arrow><text>十全十美的闪婚</text><desc>100%已读</desc><url>bookid=123</url></link>
-		<link><arrow>1</arrow><text>斗破苍穹</text><desc>100%已读</desc><url>bookid=123</url></link>
+		<% Book.order('hot desc').limit(20).each do |b| -%> 
+		<link>
+			<arrow>1</arrow>
+			<text><%= b.bookname %></text>
+			<desc>共<%= b.book_chapters.length %>章</desc>
+			<url>books/<%= b.id %></url>
+		</link>
+		<% end -%>
 	</content>
 </page>
