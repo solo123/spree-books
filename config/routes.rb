@@ -16,4 +16,9 @@ Rails.application.routes.draw do
     match 'book_configuration' => 'book_configuration#index'
     match 'tools' => 'tools'
   end
+  
+  namespace :reader do
+  	resources :books
+  	match 'home' => 'pages#index'
+  end
 end
