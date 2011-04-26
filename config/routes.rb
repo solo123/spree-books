@@ -20,6 +20,6 @@ Rails.application.routes.draw do
   namespace :reader do
   	resources :books
   	match 'pages/:action' => 'pages'
-  	match 'pages/books/:id((/:op)/:ch)' => 'pages#books'
+  	match 'pages/books/:id(/:op(/:ch))' => 'pages#books'
   end
 end
