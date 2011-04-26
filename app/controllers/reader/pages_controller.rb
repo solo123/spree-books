@@ -5,4 +5,14 @@ class Reader::PagesController < Spree::BaseController
 	def history
 		render 'history.xml.erb'
 	end
+	def book
+		op = params[:op]
+		if op == 'catalog'
+			render 'book_catalog.xml.erb'
+		elsif op == 'chapter'
+			render 'book_chapter.xml.erb'
+		else
+			render 'book_cover.xml.erb'
+		end
+	end
 end
