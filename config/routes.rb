@@ -19,6 +19,6 @@ Rails.application.routes.draw do
   
   namespace :reader do
   	resources :books
-  	match 'home' => 'pages#index'
+  	match 'pages/:action' => 'pages'
   end
 end

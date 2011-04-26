@@ -1,5 +1,8 @@
 class Reader::PagesController < Spree::BaseController
-	def index
-		render 'index.xml.erb' 
+	def home
+		render 'home.xml.erb' 
+	end
+	def history
+		render 'history.xml.erb'
 	end
 end
