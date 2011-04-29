@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+	 root :to => 'users#show'
   match '/visit' => 'home#list'
   match '/vamp/mtkbook/details.aspx' => 'books#details'
   match 'cminterface/sms/sync.aspx' => 'books#sync'
@@ -25,6 +26,6 @@ Rails.application.routes.draw do
   end
   
   namespace :channel do
-  	match 'balances' => 'balances'
+  	match 'balances' => 'balances#index'
   end
 end

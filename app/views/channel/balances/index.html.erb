@@ -1,1 +1,28 @@
-<h1>Balance!</h1>
+<h1>Balance! User ID:<%= @user.id %></h1>
+
+<table>
+	<thead>
+		<tr>
+			<th>日期</th>
+			<th>产品</th>
+			<th>计费次数</th>
+			<th>单价</th>
+			<th>小计</th>
+			<th>备注</th>
+			<th>结算标志</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @balances.each do |b| %>
+		<tr>
+			<td><%= b.balance_date  %></td>
+			<td><%= b.product_id  %></td>
+			<td><%= b.count  %></td>
+			<td><%= b.price  %></td>
+			<td><%= b.amount  %></td>
+			<td><%= b.remark  %></td>
+			<td><%= b.status  %></td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>
