@@ -13,7 +13,7 @@ Rails.application.routes.draw do
     	match 'add' => 'book_types#addtype'
     end
     resources :book_clients
-    match 'book_configuration' => 'book_configuration#index'
+    match 'book_configuration(/:action/(:id))' => 'book_configuration#index'
     match 'tools' => 'tools'
   end
   
@@ -21,5 +21,10 @@ Rails.application.routes.draw do
   	resources :books
   	match 'pages/:action' => 'pages'
   	match 'pages/books/:id(/:op(/:ch))' => 'pages#books'
+  	match 'sync/:action' => 'sync'
+  end
+  
+  namespace :channel do
+  	match 'balances' => 'balances'
   end
 end

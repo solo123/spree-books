@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PACK>
+	<% @prefs.each do |pref| %>
+	<<%= pref.name.upcase %>><%= pref.value %></<%= pref.name.upcase %>>
+	<% end %>
+</PACK>

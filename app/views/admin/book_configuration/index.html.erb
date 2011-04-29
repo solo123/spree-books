@@ -1,19 +1,62 @@
 <h1>书库配置</h1>
 
-<table style="width:auto;">
+<script type="text/javascript">
+function add_pref(){
+	$.post("book_configuration/add", {owner_id: $('#config_owner_id').val(), name: $('#config_name').val(), value:$('#config_value').val()}, function(data){
+		$(data).appendTo('#configs');
+		$("#new_config")[0].reset();
+		//alert(data);
+	});
+}
+function update_pref(){
+	$.post("book_configuration/update", {id: $('#config_id').val(), owner_id: $('#config_owner_id').val(), name: $('#config_name').val(), value:$('#config_value').val()}, function(data){
+		//alert(data);
+		$("#id_"+$('#config_id').val()).replaceWith(data);
+		$("#new_config")[0].reset();
+	});
+}
+function edit_config(id,name,value){
+	$('#config_id').val(id);
+	$('#config_name').val(name);
+	$('#config_value').val(value);
+}
+</script>
+
+<select id="config_owner_id">
+	<% @confs.each do |c| %>
+	<option value="<%= c.id %>" <%= c.id == params[:id].to_i ? 'selected="selected"' : '' %>><%= c.name %></option>
+	<% end %>
+</select>
+<form id="new_config">
+	ID:<input id="config_id" type="text" size="4" />
+name:<input id="config_name" type="text" size="14"></input>
+value:<input id="config_value" type="text" size="14"></input>
+<input id="btn_add_config" type="button" value="Add" onclick="add_pref();" />
+<input id="btn_update_config" type="button" value="Update" onclick="update_pref();" />
+</form>
+
+
+<table id="configs" style="width:auto;">
+	<thead>
+		<tr>
+			<th>id</th>
+			<th>name</th>
+			<th>value</th>
+			<th>owner_id</th>
+			<th>owner</th>
+			<th>op</th>
+		</tr>
+	</thead>
 	<tbody>
-		<tr><td>Operate</td><td><input type="text" /></td><td><input type="button" value="Save" /></td></tr>
-		<tr><td>Service</td><td><input type="text" /></td><td><input type="button" value="Save" /></td></tr>
-		<tr><td>FeeCode</td><td><input type="text" /></td><td><input type="button" value="Save" /></td></tr>
-		<tr><td>msg1</td><td><input type="text" /></td><td><input type="button" value="Save" /></td></tr>
-		<tr><td>msg2</td><td><input type="text" /></td><td><input type="button" value="Save" /></td></tr>
-		<tr><td>msg3</td><td><input type="text" /></td><td><input type="button" value="Save" /></td></tr>
-		<tr><td>msg4</td><td><input type="text" /></td><td><input type="button" value="Save" /></td></tr>
-		<tr><td>msg5</td><td><input type="text" /></td><td><input type="button" value="Save" /></td></tr>
-		<tr><td>SPNumber</td><td><input type="text" /></td><td><input type="button" value="Save" /></td></tr>
-		<tr><td>Content</td><td><input type="text" /></td><td><input type="button" value="Save" /></td></tr>
-		<tr><td>Second</td><td><input type="text" /></td><td><input type="button" value="Save" /></td></tr>
-		<tr><td>Dynamics</td><td><input type="text" /></td><td><input type="button" value="Save" /></td></tr>
-		<tr><td>Answers</td><td><input type="text" /></td><td><input type="button" value="Save" /></td></tr>
+		<% @prefs.each do |p| %>
+		<tr id="id_<%= p.id %>">
+			<td><%= p.id %></td>
+			<td><%= p.name %></td>
+			<td><%= p.value %></td>
+			<td><%= p.owner_id %></td>
+			<td><%= p.owner_type %></td>
+			<td><a onclick="edit_config('<%= p.id %>','<%= p.name %>','<%= p.value %>')">修改</a></td>
+		</tr>
+		<% end %>
 	</tbody>
 </table>
