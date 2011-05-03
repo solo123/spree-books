@@ -1,0 +1,16 @@
+---
+zh-CN:
+  books: 图书
+  book_types: 图书类型
+  new_book: 添加图书
+  bookname: 书名
+  author: 作者
+  bookinfo: 图书简介
+  picurl: 图片路径
+  new_book_type: 添加图书类型
+  new_book_chapter: 添加图书章节
+  book_clients: 图书客户
+  book_id: 图书编号
+  chaptername: 章节标题
+  length: 长度
+  page: 页数
