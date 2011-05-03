@@ -6,10 +6,10 @@ class Channel::BalancesController < Spree::BaseController
   		redirect_to login_url
   	end
   	
-  	customer = Customer.find_by_user_id(@user.id)
+  	customer = Customer.find_all_by_user_id(@user.id)
   	@balances = nil
-  	if customer
-  		company = customer.company
+  	if customer.length > 0
+  		company = customer[0].company
   		if company
   			@balances = Balance.find_all_by_company_id(company.id)
   		end
