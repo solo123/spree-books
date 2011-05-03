@@ -12,6 +12,11 @@ zh-CN:
   book_clients: 图书客户
   book_id: 图书编号
   chaptername: 章节标题
+  companies: 公司列表
+  customers: 顾客列表
+  new_company: 新增公司
+  new_customer: 新增顾客
+  are_you_sure_you_want_to_delete_this_record: 您确认要删除这条数据吗？
   'no': "否"
   'yes': "是"
   5_biggest_spenders: "5个最大的消费者"

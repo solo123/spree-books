@@ -19,6 +19,7 @@ Rails.application.routes.draw do
     match 'book_configuration(/:action/(:id))' => 'book_configuration#index'
     match 'tools' => 'tools'
     match 'balances(/:action)' => 'balances'
+    match 'companies/:id/save_customer' => 'companies#save_customer'
   end
   
   namespace :reader do

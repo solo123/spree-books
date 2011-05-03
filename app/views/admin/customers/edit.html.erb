@@ -1,0 +1,9 @@
+<%= render :partial => 'admin/shared/data_sub_menu' %>
+
+<h1>修改顾客资料</h1>
+
+
+<%= form_for(@customer, :url => object_url, :html => { :method => :put, :multipart => true }) do |f| %>
+  <%= render :partial => 'form', :locals => {:f => f} %>
+  <%= render :partial => 'admin/shared/edit_resource_links' %>
+<% end %>

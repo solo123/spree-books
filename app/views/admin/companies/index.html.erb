@@ -9,7 +9,7 @@
   <br class='clear' />
 </div>
 
-<h1>Company List</h1>
+<h1>公司列表</h1>
 
 <table>
 	<thead>
@@ -19,16 +19,24 @@
 		<th>待结算金额</th>
 		<th>创建日期</th>
 		<th>更新日期</th>
+		<th>操作</th>
 	</thead>
 	<tbody>
 		<% collection.each do |c| %>
-		<tr>
+		<tr id="company_<%= c.id%>">
 			<td><%= c.id%></td>
 			<td><%= c.name%></td>
 			<td><%= c.channel%></td>
 			<td><%= c.balance%></td>
 			<td><%= c.created_at%></td>
 			<td><%= c.updated_at%></td>
+			<td>
+				<a href="companies/<%= c.id %>">查看</a>
+				&nbsp;
+		        <%= link_to_edit c  %>
+		        &nbsp;
+		        <%= link_to_delete c  %>				
+			</td>
 		</tr>
 		<% end%>
 	</tbody>

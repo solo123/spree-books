@@ -1,3 +1,70 @@
+<script type="text/javascript">
+	function save_changes(){
+		$('#table_pre input:checked').each(function(){
+			$.get('/admin/companies/1/save_customer', {customer_id: $(this).attr("customer_id"), user_id: $(this).parent().parent().find('input[type=text]').val()}, function(data){
+				if (data=='ok')
+					location.reload();
+			});
+		});
+	}
+</script>
 <%= render :partial => 'admin/shared/data_sub_menu' %>
+
+<h1>公司信息</h1>
+
+<div>
+	<b>ID:</b><%= @company.id %>
+</div>
+<div>
+	<b>公司名:</b><%= @company.name %>
+</div>
+<div>
+	<b>渠道号:</b><%= @company.channel %>
+</div>
+<hr />
+<h2>登录顾客帐号</h2>
+<table style="width:auto;">
+	<% cs1 = Customer.find_all_by_company_id(@company.id)
+	   cs1.each do |c1|
+	 %>
+	<tr>
+		<td><%= c1.user.login%></td>
+		<td><%= c1.real_name %></td>
+		<td>移除</td>
+	</tr>
+	<% end %>
+</table>
+
+
+<h2>尚未挂靠公司的顾客</h2>
+<table style="width:auto;" id="table_pre">
+	<% cs2 = Customer.where('company_id is null or company_id=0')
+	   cs2.each do |c2|
+	 %>
+	<tr>
+		<td><input type="checkbox" id="customer_<%= c2.id%>" customer_id="<%= c2.id %>"></input></td>
+		<td><%= raw c2.user ? c2.user.login : '<input type="text" id="inp_' + c2.id.to_s + '" value="" />' %></td>
+		<td><%= c2.real_name %></td>
+	</tr>
+	<% end %>
+</table>
+
+<input type="button" onclick="save_changes();" value="保存" />
+
+<h2>新开的登录账户</h2>
+<table style="width:auto;">
+	<% us = User.order('id desc').limit(20)
+	   us.each do |u|
+	 %>
+	<tr>
+		<td><%= u.id %></td>
+		<td><%= u.login %></td>
+		<td><%= u.email%></td>
+		<td><%= u.created_at %></td>
+	</tr>
+	<% end %>
+</table>
+
+
 
 <%= render :partial => 'admin/shared/show_resource_links' %>

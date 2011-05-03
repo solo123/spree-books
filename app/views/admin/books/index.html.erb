@@ -27,7 +27,7 @@
 	</thead>
 	<tbody>
 		<% collection.each do |book| %>
-		<tr>
+		<tr id="book_<%= book.id%>">
 			<td><%= book.id %></td>
 			<td><%= book.bookname %></td>
 			<td><%= book.author %></td>

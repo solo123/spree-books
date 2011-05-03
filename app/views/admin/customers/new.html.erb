@@ -3,32 +3,6 @@
 <h1>添加新客户</h1>
 
 <%= form_for(:customer,  :url => collection_url, :html => { :multipart => true }) do |f| %>
-<fieldset>
-  <%= f.field_container :user_id do %>
-    <%= f.label :user_id, '登录用户号' %> <span class="required">*</span><br />
-    <%= f.text_field :user_id, :class => 'fullwidth title'  %>
-    <%= f.error_message_on :user_id %>
-  <% end %>	
-  <%= f.field_container :company_id do %>
-    <%= f.label :company_id, '公司名' %> <span class="required">*</span><br />
-    <%= f.text_field :company_id, :class => 'fullwidth title'  %>
-    <%= f.error_message_on :company_id %>
-  <% end %>
-    <%= f.field_container :real_name do %>
-    <%= f.label :real_name, '真实姓名' %> <span class="required">*</span><br />
-    <%= f.text_field :real_name, :class => 'fullwidth title'  %>
-    <%= f.error_message_on :real_name %>
-  <% end %>
-  <%= f.field_container :phone do %>
-    <%= f.label :phone, '联系电话' %> <span class="required">*</span><br />
-    <%= f.text_field :phone, :class => 'fullwidth title'  %>
-    <%= f.error_message_on :phone %>
-  <% end %>
-    <%= f.field_container :website do %>
-    <%= f.label :website, '网站' %> <span class="required">*</span><br />
-    <%= f.text_field :website, :class => 'fullwidth title'  %>
-    <%= f.error_message_on :website %>
-  <% end %>  
-    <%= render :partial => 'admin/shared/new_resource_links' %>
-</fieldset>
+  <%= render :partial => 'form', :locals => {:f => f} %>
+  <%= render :partial => 'admin/shared/new_resource_links' %>
 <% end %>
