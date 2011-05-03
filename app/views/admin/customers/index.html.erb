@@ -1,0 +1,39 @@
+<%= render :partial => 'admin/shared/data_sub_menu' %>
+
+<div class='toolbar'>
+  <ul class='actions'>
+    <li id="new_customer_link">
+      <%= button_link_to t("new_customer"), new_object_url %>
+    </li>
+  </ul>
+  <br class='clear' />
+</div>
+
+<h1>客户列表</h1>
+
+<table>
+	<thead>
+		<th>ID</th>
+		<th>User ID</th>
+		<th>公司名</th>
+		<th>姓名</th>
+		<th>联系电话</th>
+		<th>网站</th>
+		<th>开通时间</th>
+		<th>更新日期</th>
+	</thead>
+	<tbody>
+		<% collection.each do |c| %>
+		<tr>
+			<td><%= c.id%></td>
+			<td><%= c.user_id%></td>
+			<td><%= c.company_id%></td>
+			<td><%= c.real_name%></td>
+			<td><%= c.phone%></td>
+			<td><%= c.website%></td>
+			<td><%= c.created_at%></td>
+			<td><%= c.updated_at%></td>
+		</tr>
+		<% end%>
+	</tbody>
+</table>

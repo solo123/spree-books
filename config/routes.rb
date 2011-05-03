@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-	 root :to => 'users#show'
+	 root :to => 'channel/balances#index'
   match '/visit' => 'home#list'
   match '/vamp/mtkbook/details.aspx' => 'books#details'
   match 'cminterface/sms/sync.aspx' => 'books#sync'
@@ -10,12 +10,15 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :books
     resources :book_chapters
+    resources :companies
+    resources :customers
     resources :book_types do
     	match 'add' => 'book_types#addtype'
     end
     resources :book_clients
     match 'book_configuration(/:action/(:id))' => 'book_configuration#index'
     match 'tools' => 'tools'
+    match 'balances(/:action)' => 'balances'
   end
   
   namespace :reader do

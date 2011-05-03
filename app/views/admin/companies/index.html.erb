@@ -1,0 +1,35 @@
+<%= render :partial => 'admin/shared/data_sub_menu' %>
+
+<div class='toolbar'>
+  <ul class='actions'>
+    <li id="new_company_link">
+      <%= button_link_to t("new_company"), new_object_url %>
+    </li>
+  </ul>
+  <br class='clear' />
+</div>
+
+<h1>Company List</h1>
+
+<table>
+	<thead>
+		<th>ID</th>
+		<th>公司名</th>
+		<th>渠道号</th>
+		<th>待结算金额</th>
+		<th>创建日期</th>
+		<th>更新日期</th>
+	</thead>
+	<tbody>
+		<% collection.each do |c| %>
+		<tr>
+			<td><%= c.id%></td>
+			<td><%= c.name%></td>
+			<td><%= c.channel%></td>
+			<td><%= c.balance%></td>
+			<td><%= c.created_at%></td>
+			<td><%= c.updated_at%></td>
+		</tr>
+		<% end%>
+	</tbody>
+</table>

@@ -1,0 +1,19 @@
+<%= render :partial => 'admin/shared/data_sub_menu' %>
+
+<h1>Add Company</h1>
+
+<%= form_for(:company,  :url => collection_url, :html => { :multipart => true }) do |f| %>
+<fieldset>
+  <%= f.field_container :name do %>
+    <%= f.label :name, '公司名' %> <span class="required">*</span><br />
+    <%= f.text_field :name, :class => 'fullwidth title'  %>
+    <%= f.error_message_on :name %>
+  <% end %>
+    <%= f.field_container :channel do %>
+    <%= f.label :channel, '渠道号' %> <span class="required">*</span><br />
+    <%= f.text_field :channel, :class => 'fullwidth title'  %>
+    <%= f.error_message_on :channel %>
+  <% end %>
+    <%= render :partial => 'admin/shared/new_resource_links' %>
+</fieldset>
+<% end %>

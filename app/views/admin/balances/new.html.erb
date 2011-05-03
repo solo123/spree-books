@@ -1,0 +1,76 @@
+<script type="text/javascript">
+  $(function(){
+    $("#dialog").dialog({autoOpen: false, show: "blind", hide: "blind", width: 580});
+  });
+  
+ function import_data(){
+    $.ajax({
+      type: 'POST',
+      url: 'import',
+      data: ({authenticity_token: AUTH_TOKEN, brand:$('#import_brand').val(), data: $('#import_text').val()}),
+      success: function(r){
+        if (r=='ok')
+          location.reload();
+        else
+          alert(r);
+      }
+    });
+  }
+  
+  function clear_data(){
+  	$.get('clear');
+  	location.reload();
+  }
+</script>
+
+<div class='toolbar'>
+  <ul class='actions'>
+    <li id="new_book_chapter_link" onclick="alert('ok');">
+      <span><img alt="Add" src="/images/admin/icons/add.png?1302930244">导入数据</span>
+    </li>
+    <li id="new_book_chapter_link" onclick="clear_data();">
+      <span><img alt="Add" src="/images/admin/icons/add.png?1302930244">清空</span>
+    </li>
+  </ul>
+  <br class='clear' />
+</div>
+
+<table>
+	<thead>
+		<tr>
+			<th>日期</th>
+			<th>合作商</th>
+			<th>营销ID</th>
+			<th>结算用户数</th>
+			<th>产品类型</th>
+			<th>备注</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @balances.each do |b| %>
+		<tr>
+			<td><%= b.balance_date %></td>
+			<td><%= b.channel %></td>
+			<td><%= b.channel %></td>
+			<td><%= b.count %></td>
+			<td><%= b.product_id %></td>
+			<td><%= b.remark %></td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>
+
+<div id="dialog" title="导入数据">
+	<p>
+		<span class="ui-icon ui-icon-circle-check" style="float:left;margin:0 7px 50px 0;"></span>
+		请把excel表格数据拷贝粘贴到下面文本框中。
+	</p>
+    <p>
+      产品：
+      <input type="text" id="import_brand" />
+    </p>
+	<p>
+      <textarea id="import_text" cols="80" rows="12" ></textarea>
+      <input type="button" onclick="import_data();" value="导入数据" />
+    </p>
+</div>

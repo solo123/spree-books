@@ -1,5 +1,8 @@
-<h1>Balance! User ID:<%= @user.id %></h1>
+<h1>数据统计表 ID:<%= @user.id %></h1>
 
+<% if !@balances %>
+<h2>未找到您的数据。</h2>
+<% else %>
 <table>
 	<thead>
 		<tr>
@@ -26,3 +29,4 @@
 		<% end %>
 	</tbody>
 </table>
+<% end %>

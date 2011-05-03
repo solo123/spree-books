@@ -1,7 +1,9 @@
 <% content_for :sub_menu do %>
   <ul id="sub_nav">
     <%= hook :admin_data_sub_tabs do %>
-      <%= tab :book_clients, :match_path => '/book_clients' %>
+      <%= tab :companies, :match_path => '/companies' %>
+      <%= tab :customers, :match_path => '/customers' %>
+      <%= tab :book_clients, :match_path => '/book_clients', :css_class => 'last' %>
       <%#= tab :book_types, :match_path => '/book_types', :css_class => 'last' %>
     <% end %>
   </ul>
