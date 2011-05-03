@@ -4,6 +4,7 @@ class Channel::BalancesController < Spree::BaseController
   	@user = current_user
   	if !@user
   		redirect_to login_url
+  		return
   	end
   	
   	customer = Customer.find_all_by_user_id(@user.id)
@@ -11,7 +12,7 @@ class Channel::BalancesController < Spree::BaseController
   	if customer.length > 0
   		company = customer[0].company
   		if company
-  			@balances = Balance.find_all_by_company_id(company.id)
+  			@balances = Balance.where('FIND_IN_SET(channel,\'' + company.channel + '\')')
   		end
   	end
 	if params[:start_at]
