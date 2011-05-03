@@ -1,7 +1,7 @@
 <script type="text/javascript">
 	function save_changes(){
 		$('#table_pre input:checked').each(function(){
-			$.get('/admin/companies/1/save_customer', {customer_id: $(this).attr("customer_id"), user_id: $(this).parent().parent().find('input[type=text]').val()}, function(data){
+			$.get('<%= @company.id %>/save_customer', {customer_id: $(this).attr("customer_id"), user_id: $(this).parent().parent().find('input[type=text]').val()}, function(data){
 				if (data=='ok')
 					location.reload();
 			});
