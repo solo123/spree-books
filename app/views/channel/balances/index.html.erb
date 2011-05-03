@@ -1,8 +1,10 @@
-<h1>数据统计表 ID:<%= @user.id %></h1>
 
 <% if !@balances %>
 <h2>未找到您的数据。</h2>
 <% else %>
+<h1>数据统计表 （ID:<%= @user.id %>, 公司名：<%= @company.name %>）</h1>
+<p>渠道号：<%= @company.channel %></p>
+
 <table>
 	<thead>
 		<tr>

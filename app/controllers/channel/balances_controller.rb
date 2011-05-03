@@ -9,10 +9,11 @@ class Channel::BalancesController < Spree::BaseController
   	
   	customer = Customer.find_all_by_user_id(@user.id)
   	@balances = nil
+  	@company = nil
   	if customer.length > 0
-  		company = customer[0].company
-  		if company
-  			@balances = Balance.where('FIND_IN_SET(channel,\'' + company.channel + '\')')
+  		@company = customer[0].company
+  		if @company
+  			@balances = Balance.where('FIND_IN_SET(channel,\'' + @company.channel + '\')')
   		end
   	end
 	if params[:start_at]
