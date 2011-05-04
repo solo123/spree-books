@@ -1,8 +1,23 @@
 class Admin::BalancesController < Admin::BaseController
+	def index
+	end
   def new
   	@balances = Balance.where('status=0')
+  	render :action => :new, :layout => !request.xhr?
   end
   
+  def query
+ 		@companies = Company.all
+  	@balances = Balance.where('status=1')
+  	if params[:company] && params[:company] > '0'
+  		@balances = @balances.where('company_id=' + params[:company])
+  	end
+  	@current = params[:company] ? params[:company].to_i : 0
+  	render :layout => !request.xhr?
+  end
+  def imp
+  	render 'imp.html.erb', :layout => !request.xhr?
+  end
   def import
   	data = params[:data]
   	lines = data.split(/\n/)
@@ -24,6 +39,11 @@ class Admin::BalancesController < Admin::BaseController
   
   def clear
   	Balance.where('status=0').delete_all
+  	render :text => 'ok'
+  end
+  def save
+  	Balance.update_all("status=1", "status=0")
+  	render :text => 'ok'
   end
 end
 

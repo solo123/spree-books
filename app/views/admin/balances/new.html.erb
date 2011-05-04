@@ -1,39 +1,62 @@
 <script type="text/javascript">
   $(function(){
     $("#dialog").dialog({autoOpen: false, show: "blind", hide: "blind", width: 580});
+    $("#dialog").dialog("close");
   });
   
  function import_data(){
     $.ajax({
       type: 'POST',
-      url: 'import',
+      url: 'balances/import',
       data: ({authenticity_token: AUTH_TOKEN, brand:$('#import_brand').val(), data: $('#import_text').val()}),
       success: function(r){
         if (r=='ok')
-          location.reload();
+        	reload_tab();
         else
           alert(r);
       }
     });
   }
-  
+  function reload_tab(){
+  	$('#tabs').tabs("load", 1);
+  }
   function clear_data(){
-  	$.get('clear');
-  	location.reload();
+  	$.get('balances/clear');
+  	reload_tab();
+  }
+  function save_data(){
+  	$.get('balances/save');
+  	reload_tab();
+  }
+  function open_dialog(){
+  	 $("#dialog").dialog("open");
   }
 </script>
 
 <div class='toolbar'>
+	
   <ul class='actions'>
-    <li id="new_book_chapter_link" onclick="alert('ok');">
-      <span><img alt="Add" src="/images/admin/icons/add.png?1302930244">导入数据</span>
+    <li>
+      <a href="#" class="button" onclick="open_dialog();">
+	      <span><img alt="Add" src="/images/admin/icons/add.png">导入数据</span>
+	  </a>
     </li>
-    <li id="new_book_chapter_link" onclick="clear_data();">
-      <span><img alt="Add" src="/images/admin/icons/add.png?1302930244">清空</span>
+    <li>
+      <a href="#" class="button" onclick="save_data();" >
+	      <span><img alt="Add" src="/images/admin/icons/add.png">发布数据</span>
+	  	</a>
+    </li>
+    <li>
+      <a href="#" class="button" onclick="clear_data();">
+      	<span><img alt="Add" src="/images/admin/icons/add.png">清空</span>
+      </a>
     </li>
   </ul>
+  
   <br class='clear' />
 </div>
+
+<div id="import_data"></div>
 
 <table>
 	<thead>

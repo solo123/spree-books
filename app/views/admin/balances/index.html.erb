@@ -1,0 +1,42 @@
+<script type="text/javascript">
+  $(function(){
+    $('#tabs').tabs();
+    $("#dialog").dialog({autoOpen: false, show: "blind", hide: "blind", width: 580});
+    
+  });
+  
+ function import_data(){
+    $.ajax({
+      type: 'POST',
+      url: 'import',
+      data: ({authenticity_token: AUTH_TOKEN, brand:$('#import_brand').val(), data: $('#import_text').val()}),
+      success: function(r){
+        if (r=='ok')
+          location.reload();
+        else
+          alert(r);
+      }
+    });
+  }
+  
+  function clear_data(){
+  	$.get('clear');
+  	location.reload();
+  }
+  
+  function reload_query_tab(url){
+  	$('#tabs')
+  		.tabs("url", 0, url)
+  		.tabs("load", 0);
+  }
+</script>
+
+<div id="tabs">
+	<ul>
+		<li><a href='balances/query'>数据查询</a></li>
+		<li><a href='balances/new'>导入数据</a></li>
+	</ul>
+</div>
+
+
+

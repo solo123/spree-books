@@ -3,6 +3,8 @@ class Channel::BalancesController < Spree::BaseController
   def index
   	@user = current_user
   	if !@user
+  		session["user_return_to"] = "/"
+  		#session[:return_to] = "/"
   		redirect_to login_url
   		return
   	end
