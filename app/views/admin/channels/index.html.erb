@@ -1,3 +1,8 @@
+<script type="text/javascript">
+function reload(company){
+	location.href = "channels?company=" + company;
+}
+</script>
 <%= render :partial => 'admin/shared/data_sub_menu' %>
 
 <div class='toolbar'>
@@ -10,6 +15,14 @@
 </div>
 
 <h1><%= "#{t("actions.listing")} #{t("channels")}" %></h1>
+
+
+	<select id="sele_company" onchange="reload(this.value);">
+		<option value="0">全部公司</option>
+		<% @companies.each do |c| %>
+		<option <%= 'selected="selected"' if c.id == @current %> value="<%= c.id%>"><%= c.name%></option>
+		<% end %>
+	</select>
 
 <table class="index">
 	<thead>
