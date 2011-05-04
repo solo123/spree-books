@@ -1,0 +1,50 @@
+<%= render :partial => 'admin/shared/data_sub_menu' %>
+
+<div class='toolbar'>
+  <ul class='actions'>
+    <li id="new_channel_link">
+      <%= button_link_to t("new_channel"), new_object_url %>
+    </li>
+  </ul>
+  <br class='clear' />
+</div>
+
+<h1><%= "#{t("actions.listing")} #{t("channels")}" %></h1>
+
+<table class="index">
+	<thead>
+		<tr>
+			<th>ID</th>
+			<th>公司</th>
+			<th>渠道号</th>
+			<th>名称</th>
+			<th>创建时间</th>
+			<th>更新时间</th>
+			<th>状态</th>
+			<th>操作</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% collection.each do |c| %>
+		<tr id="channel_<%= c.id%>">
+			<td><%= c.id %></td>
+			<td><%= c.company_id %></td>
+			<td><%= c.channel %></td>
+			<td width='300'><%= c.title %></td>
+			<td><%= book.created_at %></td>
+			<td><%= book.updated_at %></td>
+			<td><%= book.status %></td>
+
+			<td class="actions">
+				<a href="channels/<%= c.id %>">show</a>
+				&nbsp;
+		        <%= link_to_edit c unless c.status == 0  %>
+		        &nbsp;
+		        <%= link_to_delete c unless c.status == 0  %>
+    		</td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>
+<%#= will_paginate(:previous_label => "&#171; #{t('previous')}", :next_label => "#{t('next')} &#187;") %>
+

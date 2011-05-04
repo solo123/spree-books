@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     resources :book_chapters
     resources :companies
     resources :customers
+    resources :channels
     resources :book_types do
     	match 'add' => 'book_types#addtype'
     end

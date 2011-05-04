@@ -16,6 +16,8 @@ zh-CN:
   customers: 顾客列表
   new_company: 新增公司
   new_customer: 新增顾客
+  channels: 渠道列表
+  new_channel: 新增渠道
   are_you_sure_you_want_to_delete_this_record: 您确认要删除这条数据吗？
   'no': "否"
   'yes': "是"

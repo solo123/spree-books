@@ -1,0 +1,9 @@
+<%= render :partial => 'admin/shared/data_sub_menu' %>
+
+<h1>渠道管理</h1>
+
+<%= render "shared/error_messages", :target => @channel %>
+<%= form_for(:channel,  :url => collection_url, :html => { :multipart => true }) do |f| %>
+  <%= render :partial => 'form', :locals => {:f => f} %>
+  <%= render :partial => 'admin/shared/new_resource_links' %>
+<% end %>
