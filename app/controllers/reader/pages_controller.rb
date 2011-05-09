@@ -1,20 +1,21 @@
+# encoding: utf-8
 class Reader::PagesController < Spree::BaseController
 	respond_to :html, :xml
 	def home
 		render 'home.xml.erb' 
 	end
-	def search
+	def search_page
 		@title = '搜索结果'
 		@books = Book.where('bookname + " " + author like "%' + params[:s] + '%"').order('bookname').limit(200)
 		render 'books.xml.erb'
 	end
-	def config
+	def config_page
 		render 'config.xml.erb'
 	end
-	def help
+	def help_page
 		render 'help.xml.erb'
 	end
-	def upgrade
+	def upgrade_page
 		render 'upgrade.xml.erb'
 	end
 	def menu
