@@ -4,7 +4,18 @@ class Reader::PagesController < Spree::BaseController
 		render 'home.xml.erb' 
 	end
 	def search
-		
+		@title = '搜索结果'
+		@books = Book.where('bookname + " " + author like "%' + params[:s] + '%"').order('bookname').limit(200)
+		render 'books.xml.erb'
+	end
+	def config
+		render 'config.xml.erb'
+	end
+	def help
+		render 'help.xml.erb'
+	end
+	def upgrade
+		render 'upgrade.xml.erb'
 	end
 	def menu
 		@book = Book.find_by_status(99);

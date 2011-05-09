@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<page>
+	<header><%= @title %></header>
+	<content>
+		<% @books.each do |b| -%> 
+		<link>
+			<arrow>1</arrow>
+			<text><%= b.bookname %></text>
+			<desc>共<%= b.book_chapters.length %>章</desc>
+			<url>books/<%= b.id %></url>
+		</link>
+		<% end -%>
+	</content>
+</page>
