@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<page>
+	<content>
+		<% if @book %>
+		<% @book.book_chapters.each do |ch| -%>
+		<link>
+			<arrow><%= ch.page %></arrow>
+			<text><%= ch.chaptername %></text>
+			<url><%= ch.content %></url>
+		</link>
+		<% end
+		end 
+		-%>
+	</content>
+</page>

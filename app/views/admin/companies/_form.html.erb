@@ -4,9 +4,9 @@
     <%= f.text_field :name, :class => 'fullwidth title'  %>
     <%= f.error_message_on :name %>
   <% end %>
-    <%= f.field_container :channel do %>
-    <%= f.label :channel, '渠道号' %> <span class="required">*</span><br />
-    <%= f.text_field :channel, :class => 'fullwidth title'  %>
-    <%= f.error_message_on :channel %>
-  <% end %>
+  
+  <label for="chs">渠道号</label>
+  <br />
+  <input type="text" class="fullwidth title" id="chs" name="chs" size=30 value="<%= @chs %>" />
+	<br />
 </fieldset>

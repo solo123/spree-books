@@ -1,7 +1,15 @@
 class Reader::PagesController < Spree::BaseController
-	respond_to :xml
+	respond_to :html, :xml
 	def home
 		render 'home.xml.erb' 
+	end
+	def search
+		
+	end
+	def menu
+		@book = Book.find_by_status(99);
+		@chapter = @book.book_chapters if @book
+		render 'links.xml.erb'
 	end
 	def history
 		render 'history.xml.erb'

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <page>
-	<header>目录《<%= @book.bookname %>》</header>
+	<header>目录：<%= @book.bookname %></header>
 	<content>
-		<link><text>《<%= @book.bookname %>》封面</text><url>books/<%= @book.id %></url></link>
+		<link><text>封面：<%= @book.bookname %></text><url>books/<%= @book.id %></url></link>
 		<% @book.book_chapters.each do |ch| -%>
 		<link>
 			<arrow>1</arrow>
