@@ -12,6 +12,12 @@ class Admin::BalancesController < Admin::BaseController
   	if params[:company] && params[:company] > '0'
   		@balances = @balances.where('company_id=' + params[:company])
   	end
+  	if params[:from] && params[:from].length > 1
+			@balances = @balances.where("balance_date>='#{params[:from]}'")
+		end
+		if params[:to] && params[:to].length > 1
+			@balances = @balances.where("balance_date<='#{params[:to]}'")
+		end
   	@current = params[:company] ? params[:company].to_i : 0
   	render :layout => !request.xhr?
   end
@@ -42,7 +48,14 @@ class Admin::BalancesController < Admin::BaseController
   	render :text => 'ok'
   end
   def save
-  	Balance.update_all("status=1", "status=0")
+  	Balance.where('status=0').each do |b|
+  		ch = Channel.find_by_channel(b.channel)
+  		if ch
+  			b.company_id = ch.company_id
+  			b.status = 1
+  			b.save!
+  		end
+    end
   	render :text => 'ok'
   end
 end

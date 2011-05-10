@@ -36,7 +36,9 @@
 		</tr>
 	</thead>
 	<tbody>
-		<% @balances.each do |b| %>
+		<%
+		  tot_count = 0
+			@balances.each do |b| %>
 		<tr>
 			<td><%= b.balance_date %></td>
 			<td><%= b.channel %></td>
@@ -45,7 +47,19 @@
 			<td><%= b.product_id %></td>
 			<td><%= b.remark %></td>
 		</tr>
-		<% end %>
+		<% 
+			tot_count += b.count
+			end %>
 	</tbody>
+	<thead>
+		<tr style="bgcolor:#aaaaaa;">
+			<th>合计</th>
+			<th></th>
+			<th></th>
+			<th><%= tot_count %></th>
+			<th></th>
+			<th></th>			
+		</tr>
+	</thead>
 </table>
 
