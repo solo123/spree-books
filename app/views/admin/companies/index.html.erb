@@ -26,7 +26,11 @@
 		<tr id="company_<%= c.id%>">
 			<td><%= c.id%></td>
 			<td><%= c.name%></td>
-			<td><%= c.channel%></td>
+			<td>
+				<% c.channels.limit(3).each do |ch| %>
+					<%= ch.channel %>,
+				<% end %>
+			</td>
 			<td><%= c.balance%></td>
 			<td><%= c.created_at%></td>
 			<td><%= c.updated_at%></td>

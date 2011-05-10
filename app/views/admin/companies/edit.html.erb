@@ -1,7 +1,30 @@
 <%= render :partial => 'admin/shared/data_sub_menu' %>
 
 <%= form_for(@company, :url => object_url, :html => { :method => :put, :multipart => true }) do |f| %>
-  <%= render :partial => 'form', :locals => {:f => f} %>
+	<fieldset>
+	  <%= f.field_container :name do %>
+	    <%= f.label :name, '公司名' %> <span class="required">*</span><br />
+	    <%= f.text_field :name, :class => 'fullwidth title'  %>
+	    <%= f.error_message_on :name %>
+	  <% end %>
+	  
+	  <label for="chs">渠道号</label>
+	  <br />
+	  <input type="text" class="fullwidth title" id="chs" name="chs" size=30 value="<%= @chs %>" />
+		<br />
+		
+		<% Channel.find_all_by_company_id(params[:id]).each do |ch|%>
+		<input type="checkbox" checked="checked" name="channels[<%= ch.id %>]" /> <%= ch.channel %> <br />		
+		<% end %>
+		
+		<% Channel.where('company_id is null or company_id=0').each do |ch|	%>
+		<input type="checkbox" name="channels[<%= ch.id %>]" /> <%= ch.channel %> <br />
+		<% end %>
+		
+		
+		
+	</fieldset>
+  
   <%= render :partial => 'admin/shared/edit_resource_links' %>
 <% end %>
 

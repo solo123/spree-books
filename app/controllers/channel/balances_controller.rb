@@ -15,7 +15,7 @@ class Channel::BalancesController < Spree::BaseController
   	if customer.length > 0
   		@company = customer[0].company
   		if @company
-  			@balances = Balance.where('FIND_IN_SET(channel,\'' + @company.channel + '\')')
+  			@balances = Balance.joins("inner join channels on balances.channel=channels.channel").where("channels.company_id=#{@company.id}")
   		end
   	end
 	if params[:start_at]

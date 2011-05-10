@@ -8,6 +8,13 @@ class Admin::CompaniesController < Admin::BaseController
   	render :text => 'ok'
   end
   
+  update.after do
+  	cmp = Company.find(params[:id])
+  	cmp.channels.clear
+  	params[:channels].each do |ch_id, b|
+  		cmp.channels << Channel.find(ch_id)
+  	end
+  end
   create.after do
   	if params[:chs]
   		params[:chs].split(',').each do |ch|

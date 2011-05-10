@@ -14,4 +14,7 @@ class HomeController < ApplicationController
 	def list
 		@his = VisitHistory.order('created_at desc').limit(100)
 	end
+	def test_here
+		render :layout => false
+	end
 end

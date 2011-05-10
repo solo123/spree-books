@@ -33,4 +33,9 @@ Rails.application.routes.draw do
   namespace :channel do
   	match 'balances' => 'balances#index'
   end
+  
+  
+  match 'home/test' => 'home#test_here'
+  
+  
 end

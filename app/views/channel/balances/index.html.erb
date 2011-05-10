@@ -2,8 +2,11 @@
 <% if !@balances %>
 <h2>未找到您的数据。</h2>
 <% else %>
-<h1>数据统计表 （ID:<%= @user.id %>, 公司名：<%= @company.name %>）</h1>
-<p>渠道号：<%= @company.channel %></p>
+<h1><b id="<%= @user.id %>"><%= @company.name %></b> 数据统计表</h1>
+<p>渠道号：
+	<% @company.channels.each do |ch| %>
+		<%= ch.channel %>, 
+	<% end %></p>
 
 <table>
 	<thead>
@@ -19,9 +22,12 @@
 		</tr>
 	</thead>
 	<tbody>
+		<% tot_count = 0
+		   tot_amount = 0
+		 %>
 		<% @balances.each do |b| %>
 		<tr>
-			<td><%= b.balance_date  %></td>
+			<td><%= b.balance_date.strftime("%Y.%m.%d") %></td>
 			<td><%= b.product_id  %></td>
 			<td><%= b.channel %></td>
 			<td><%= b.count  %></td>
@@ -30,7 +36,22 @@
 			<td><%= b.remark  %></td>
 			<td><%= b.status  %></td>
 		</tr>
-		<% end %>
+		<%
+			tot_count += b.count
+			tot_amount += b.amount
+			end %>
+		<tfoot style="border-top:solid 1px gray;">
+		<tr>
+			<td>合计</td>
+			<td></td>
+			<td></td>
+			<td><%= tot_count  %></td>
+			<td></td>
+			<td><%= tot_amount  %></td>
+			<td></td>
+			<td></td>
+		</tr>
+		</tfoot>
 	</tbody>
 </table>
 <% end %>
