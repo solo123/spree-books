@@ -10,7 +10,7 @@
 	  
 	  <label for="chs">渠道号</label>
 	  <br />
-	  <input type="text" class="fullwidth title" id="chs" name="chs" size=30 value="<%= @chs %>" />
+	  <input type="text" class="fullwidth title" id="chs" name="chs" size=30 value="<%= @company.channel %>" />
 		<br />
 		
 		<% Channel.find_all_by_company_id(params[:id]).each do |ch|%>

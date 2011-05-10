@@ -14,6 +14,20 @@ class Admin::CompaniesController < Admin::BaseController
   	params[:channels].each do |ch_id, b|
   		cmp.channels << Channel.find(ch_id)
   	end
+  	txt_chs = params[:chs]
+  	if txt_chs
+  		txt_chs.split(',').each do |txt_ch|
+  			if txt_ch && txt_ch.length>1
+  				ch = Channel.find_by_channel(txt_ch)
+  				if !ch
+  					ch = Channel.new
+  					ch.channel = txt_ch
+  					ch.save!
+  				end
+					cmp.channels << ch
+  			end
+  		end
+  	end
   end
   create.after do
   	if params[:chs]
