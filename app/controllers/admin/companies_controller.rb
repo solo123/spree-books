@@ -11,8 +11,10 @@ class Admin::CompaniesController < Admin::BaseController
   update.after do
   	cmp = Company.find(params[:id])
   	cmp.channels.clear
-  	params[:channels].each do |ch_id, b|
-  		cmp.channels << Channel.find(ch_id)
+  	if params[:channels]
+	  	params[:channels].each do |ch_id, b|
+	  		cmp.channels << Channel.find(ch_id)
+	  	end
   	end
   	txt_chs = params[:chs]
   	if txt_chs
