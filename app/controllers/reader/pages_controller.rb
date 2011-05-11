@@ -48,11 +48,15 @@ class Reader::PagesController < Spree::BaseController
 			render 'book_catalog.xml.erb'
 		elsif op == 'chapter'
 			if params[:ch]
-				@chapter = BookChapter.find(params[:ch])
+				@chapter = BookChapter.find(:first, :conditions => ["book_id=? and chapterorder=?", params[:id], params[:ch]])
 			else
-				@chapter = @book.book_chapters.first
+				BookChapter.find_all_by_book_id(params[:id]).each_with_index do |b, idx|
+					b.chapterorder = idx + 1
+					b.save
+				end
+				@chapter = @book.book_chapters.order('chapterorder').first
 			end
-			if @chapter.content
+			if @chapter && @chapter.content
 				@texts = @chapter.content.split "\n"
 			else
 				@texts = []

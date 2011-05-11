@@ -2,7 +2,7 @@
 <page>
 	<header>《<%= @book.bookname %>》</header>
 	<content>
-		<link><text>1. 阅读</text><url>books/<%= @book.id %>/chapter</url></link>
+		<link><text>1. 阅读</text><url>books/<%= @book.id %>/chapter/1</url></link>
 		<link><text>2. 目录</text><url>books/<%= @book.id %>/catalog</url></link>
 		<text>作者：<%= @book.author %></text>
 		<text>分类：<% @book.book_types.to_s %></text>
@@ -14,7 +14,6 @@
 		<link><text>3. 用户帮助</text><url>help_page</url></link>
 		<link><text>4. 软件升级</text><url>upgrade_page</url></link>
 		<link><text>5. 返回首页</text><url>home</url></link>
-		<link><text></text><url></url></link>
 	</menu>
 	<rightkey>
 		<text>首页</text><url>home</url>
