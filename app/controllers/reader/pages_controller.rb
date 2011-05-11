@@ -52,6 +52,11 @@ class Reader::PagesController < Spree::BaseController
 			else
 				@chapter = @book.book_chapters.first
 			end
+			if @chapter.content
+				@texts = @chapter.content.split "\n"
+			else
+				@texts = []
+			end
 			render 'book_chapter.xml.erb'
 		else
 			render 'book_cover.xml.erb'

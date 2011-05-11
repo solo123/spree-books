@@ -2,6 +2,19 @@
 <page>
 	<header><%= @chapter.chaptername %></header>
 	<content>
-		<text><%= @chapter.content %></text>
+		<% @texts.each do |t| -%>
+		<text><%= t %></text>
+		<% end -%>
 	</content>
+	<menu>
+		<link><text>1. 下一章</text><url>/books/<%= @chapter.book_id %>/chapter/id</url></link>
+		<link><text>2. 上一章</text><url>/books/<%= @chapter.book_id %>/chapter/id</url></link>
+		<link><text>3. 查看目录</text><url>/books/<%= @chapter.book_id %>/catalog</url></link>
+		<link><text>4. 搜索图书</text><url>CMD_SEARCH</url></link>
+		<link><text>5. 返回首页</text><url>home</url></link>
+		<link><text></text><url></url></link>
+	</menu>
+	<rightkey>
+		<link><text>下一章</text><url>/books/<%= @chapter.book_id%>/chapter/id</url></link>
+	</rightkey>
 </page>
