@@ -61,6 +61,9 @@ class Reader::PagesController < Spree::BaseController
 			else
 				@texts = []
 			end
+			@prev_ch = @chapter.chapterorder > 1 ? "books/#{@chapter.book_id}/chapter/#{@chapter.chapterorder - 1}" : "CMD_ALERT 已经是第一章"
+			@next_ch = @chapter.chapterorder < @book.book_chapters.count ? "books/#{@chapter.book_id}/chapter/#{@chapter.chapterorder + 1}" : "CMD_ALERT 已经是最后一章"
+
 			render 'book_chapter.xml.erb'
 		else
 			render 'book_cover.xml.erb'
