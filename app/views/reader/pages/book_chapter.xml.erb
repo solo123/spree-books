@@ -8,14 +8,14 @@
 		<% end -%>
 	</content>
 	<menu>
-		<link><text>1. 下一章</text><url>/books/<%= @chapter.book_id %>/chapter/<%= @chapter.chapterorder - 1 %></url></link>
-		<link><text>2. 上一章</text><url>/books/<%= @chapter.book_id %>/chapter/<%= @chapter.chapterorder + 1 %></url></link>
-		<link><text>3. 查看目录</text><url>/books/<%= @chapter.book_id %>/catalog</url></link>
+		<link><text>1. 下一章</text><url>books/<%= "#{@chapter.book_id}/chapter/#{@chapter.chapterorder - 1}" if @chapter.chapterorder > 1 %></url></link>
+		<link><text>2. 上一章</text><url>books/<%= "#{@chapter.book_id}/chapter/#{@chapter.chapterorder + 1}" if @chapter.chapterorder < @book.book_chapters.count %></url></link>
+		<link><text>3. 查看目录</text><url>books/<%= @chapter.book_id %>/catalog</url></link>
 		<link><text>4. 搜索图书</text><url>CMD_SEARCH</url></link>
 		<link><text>5. 返回首页</text><url>home</url></link>
 	</menu>
 	<rightkey>
-		<text>下一章</text><url>/books/<%= @chapter.book_id%>/chapter/<%= @chapter.chapterorder + 1 %></url>
+		<text>下一章</text><url><%= "#{@chapter.book_id}/chapter/#{@chapter.chapterorder + 1}" if @chapter.chapterorder < @book.book_chapters.count %></url>
 	</rightkey>
 	<% end %>
 </page>
