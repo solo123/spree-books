@@ -17,11 +17,11 @@ Rails.application.routes.draw do
     	match 'add' => 'book_types#addtype'
     end
     resources :book_clients
+    resources :charts
     match 'book_configuration(/:action/(:id))' => 'book_configuration#index'
     match 'tools' => 'tools'
     match 'balances(/:action)' => 'balances'
     match 'companies/:id/save_customer' => 'companies#save_customer'
-    match 'monthly_chart(/:action)' => 'monthly_chart'
   end
   
   namespace :reader do

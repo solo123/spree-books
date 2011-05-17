@@ -1,7 +1,7 @@
 <% content_for :sub_menu do %>
   <ul id="sub_nav">
     <%= hook :admin_data_sub_tabs do %>
-      <li><a href="/admin/monthly_chart">数据图表</a></li>
+      <%= tab :charts, :match_path => '/charts' %>
       <%= tab :book_clients, :match_path => '/book_clients' %>
       <%= tab :companies, :match_path => '/companies' %>
       <%= tab :customers, :match_path => '/customers' %>

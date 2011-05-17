@@ -2,7 +2,7 @@
 class BkbHooks < Spree::ThemeSupport::HookListener
   # custom hooks go here
   insert_after :admin_tabs do
-  	%(<%= tab(:books) %> <%= tab(:book_clients)%>)
+  	%(<%= tab(:books) %> <%= tab(:charts)%>)
   end
   
   insert_after :admin_configurations_menu do
