@@ -1,0 +1,54 @@
+<% content_for :head do %>
+<%= javascript_include_tag 'jquery.flot.min.js' %>
+<% end %>
+
+<%= render :partial => 'admin/shared/data_sub_menu' %>
+
+<% s = [] 
+	count=0
+ @balances.each do |b|
+ 	count+=b.cnt.to_i 
+ s << [b.balance_date.to_i * 1000, b.cnt.to_i]
+  end %>
+<h1>雅卓科技数据统计图</h1>
+<div id="monthly_chart" style="width:600px; height:300px;"></div><br />
+<h2>总数据量：&nbsp;<%=count%></h2>
+<script type="text/javascript">
+$(function(){
+	var d1 = <%= raw s %>;
+	var plot = $.plot($("#monthly_chart"), [d1], {
+		series: { lines: {show:true}, points: {show:true}},
+		grid: { hoverable:true, clickable:true},
+		xaxis: { mode: "time"}
+	});
+	
+	function showToolTip(x,y,contents){
+		$('<div id="tooltip">' + contents + "</div>").css({
+			position: 'absolute',
+			display: 'none',
+			top: y+5,
+			left: x+5,
+			border: '1px solid #fdd',
+			padding: '2px',
+			'background-color': '#fee',
+			opacity: 0.80
+		}).appendTo('body').fadeIn(200);
+	}
+	
+	$("#monthly_chart").bind("plothover", function(event,pos,item){
+		if (item){
+			var x = item.datapoint[0],
+			    y = item.datapoint[1];
+			showToolTip(item.pageX, item.pageY, y);
+		} else {
+			$("#tooltip").remove();
+		}
+	});
+	
+	$("#monthly_chart").bind("plotclick", function(event,pos,item){
+		if (item){
+			plot.highlight(item.series, item.datapoint);
+		}
+	});
+});
+</script>

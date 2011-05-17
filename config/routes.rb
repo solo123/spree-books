@@ -21,6 +21,7 @@ Rails.application.routes.draw do
     match 'tools' => 'tools'
     match 'balances(/:action)' => 'balances'
     match 'companies/:id/save_customer' => 'companies#save_customer'
+    match 'monthly_chart(/:action)' => 'monthly_chart'
   end
   
   namespace :reader do
