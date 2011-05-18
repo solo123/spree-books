@@ -4,20 +4,42 @@
 
 <%= render :partial => 'admin/shared/data_sub_menu' %>
 
-<h1>雅卓科技数据统计图</h1>
-<div id="monthly_chart" style="width:600px; height:300px;" align="right"></div><br />
-<div id="monthly_company" style="width:600px; height="300px" align="="left""></div>
+<h1>数据统计图</h1>
+<div>
+	<div>
+		<div id="monthly_chart" style="width:600px; height:300px; " align="left" >
+		</div>
+		<br />
+	</div>
+	<div >
+		公司名称：&nbsp;
+		<form method="post">
+		<% @companies.each do |com| %>
+		<input type="checkbox" id="<%= com.id%>">
+		<%= com.name %>
+		<br />
+		<% end %>
+		<button value="添加"  type="submit">添加</button>
+			</form>
+	</div>
+	<div>
+		渠道号查询(可模糊查询)：&nbsp;
+		<input type="text" id="channel_query" /> <%= button_to "查询"  %>
+		
+	</div>
+</div>
 <h2>总数据量：&nbsp;<%= @total_count %></h2>
 <script type="text/javascript">
 $(function(){
-	var d1 = [<%= raw @query_data[0] %>];
+var d1 = [<%= raw @query_data[1] %>
+	];
 	var plot = $.plot($("#monthly_chart"), [d1], {
 		series: { lines: {show:true}, points: {show:true}},
 		grid: { hoverable:true, clickable:true},
 		xaxis: { mode: "time"}
 	});
-	
-	function showToolTip(x,y,contents){
+
+	function showToolTip(x,y,contents) {
 		$('<div id="tooltip">' + contents + "</div>").css({
 			position: 'absolute',
 			display: 'none',
@@ -29,21 +51,20 @@ $(function(){
 			opacity: 0.80
 		}).appendTo('body').fadeIn(200);
 	}
-	
-	$("#monthly_chart").bind("plothover", function(event,pos,item){
-		if (item){
+
+	$("#monthly_chart").bind("plothover", function(event,pos,item) {
+		if (item) {
 			var x = item.datapoint[0],
-			    y = item.datapoint[1];
+			y = item.datapoint[1];
 			showToolTip(item.pageX, item.pageY, y);
 		} else {
 			$("#tooltip").remove();
 		}
 	});
-	
-	$("#monthly_chart").bind("plotclick", function(event,pos,item){
-		if (item){
+	$("#monthly_chart").bind("plotclick", function(event,pos,item) {
+		if (item) {
 			plot.highlight(item.series, item.datapoint);
 		}
 	});
-});
+	});
 </script>
