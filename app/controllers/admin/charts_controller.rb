@@ -12,10 +12,10 @@ class Admin::ChartsController < Admin::BaseController
 		end
 		@query_data << s.join(',')
 	end
-	
-
-	def create
-		@companies = Balance.find_by_sql ["select sum(count) as count from balances where company_id in (select id from companies where name in ? )group by company_id","#{company_name}"]
+	# => view视图请求controll
+	def create(com)
+		# => 接受form表单参数   对其参数进行判断是否为nil || 其length>0
+		@companies = Balance.find_by_sql ["select sum(count) as count from balances where company_id in (select id from companies where name in ? )group by company_id","#{com.name.to_s}"]
 		n = []
 		@query_data = []
 		@balances.each do |b|
@@ -24,22 +24,9 @@ class Admin::ChartsController < Admin::BaseController
 		end
 		@query_data << n.join(',')
 		render :index
- end
- 
-
-	# => 对于根据公司名的查询
-
-	def query_name
-		n =[]
-		company_name = name
-		
-		if @companies == nil
-		return nil;
-		else
-			@companies.each do |com|
-				n << "[,#{com.count}]"
-			end
-		end
-		@query_data << n.join(',')
+	end
+	
+	def create
+		@channels = Balance.find_by_sql ["select sum(count) as count,channel from balances where channel=? group by channel","0310%"]
 	end
 end
