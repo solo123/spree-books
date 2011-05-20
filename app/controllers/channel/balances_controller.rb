@@ -8,6 +8,9 @@ class Channel::BalancesController < Spree::BaseController
   		redirect_to login_url
   		return
   	end
+  	if @user.has_role? 'admin'
+  		@user = User.find(params[:user])
+  	end
   	
   	customer = Customer.find_all_by_user_id(@user.id)
   	@balances = nil

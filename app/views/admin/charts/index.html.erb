@@ -3,37 +3,44 @@
 <% end %>
 
 <%= render :partial => 'admin/shared/data_sub_menu' %>
-
-<h1>数据统计图</h1>
-<div>
+<div class="with-sidebar  clear tile_bg" id="content">
+  <h1>数据统计图</h1>
 	<div>
 		<div id="monthly_chart" style="width:600px; height:300px; " align="left" >
 		</div>
 		<br />
 	</div>
-	<div >
+	<div id="sidebar">
 		公司名称：&nbsp;
 		<form method="post">
 		<% @companies.each do |com| %>
-		<input type="checkbox" id="<%= com.id%>">
+		<input type="checkbox" name="company[<%= com.id%>]"  />
 		<%= com.name %>
 		<br />
 		<% end %>
 		<button value="添加"  type="submit">添加</button>
-			</form>
+
+		渠道号查询(可模糊查询)：&nbsp;
+		<input type="text" name="channel_query" /> 
+		
+		</form>
 	</div>
 	<div>
-		渠道号查询(可模糊查询)：&nbsp;
-		<input type="text" id="channel_query" /> <%= button_to "查询"  %>
-		
+
 	</div>
 </div>
 <h2>总数据量：&nbsp;<%= @total_count %></h2>
 <script type="text/javascript">
 $(function(){
-var d1 = [<%= raw @query_data[1] %>
-	];
-	var plot = $.plot($("#monthly_chart"), [d1], {
+	<%
+	  arr = [] 
+	  @query_data.each_with_index do |q, index|
+	  	arr << "d" + index.to_s 
+	  %>
+	var d<%= index %> = [<%= q %>];
+	<% end %>
+
+	var plot = $.plot($("#monthly_chart"), [<%= arr.join(',') %>], {
 		series: { lines: {show:true}, points: {show:true}},
 		grid: { hoverable:true, clickable:true},
 		xaxis: { mode: "time"}
