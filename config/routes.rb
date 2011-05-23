@@ -30,6 +30,16 @@ Rails.application.routes.draw do
   	match 'pages/books/:id(/:op(/:ch))' => 'pages#books'
   	match 'sync/:action' => 'sync'
   end
+
+	scope '/~bkb4info' do
+	  namespace :reader do
+	  	resources :books
+	  	match 'pages/:action' => 'pages'
+	  	match 'pages/books/:id(/:op(/:ch))' => 'pages#books'
+	  	match 'sync/:action' => 'sync'
+	  end
+	end
+
   
   namespace :channel do
   	match 'balances' => 'balances#index'

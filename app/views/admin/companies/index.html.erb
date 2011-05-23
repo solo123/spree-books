@@ -35,6 +35,7 @@
 			<td><%= c.created_at%></td>
 			<td><%= c.updated_at%></td>
 			<td>
+				<a href="/?company=<%= c.id %>">查帐</a>&nbsp;
 				<a href="companies/<%= c.id %>">查看</a>
 				&nbsp;
 		        <%= link_to_edit c  %>

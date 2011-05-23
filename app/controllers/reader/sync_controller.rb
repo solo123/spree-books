@@ -25,4 +25,14 @@ class Reader::SyncController < Spree::BaseController
 	def tck
 		render :text => 'tck ok.'
 	end
+	def login
+		s = ''		
+		Preference.where('owner_id=2').each do |p|
+			s << p.name.upcase
+			s << '='
+			s << p.value
+			s << "\n"
+		end
+		render :text => s
+	end
 end
