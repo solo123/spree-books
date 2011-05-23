@@ -20,12 +20,6 @@ EOF
 		@companies = Company.find_by_sql sql 
 	end
 	# => view视图请求controll
-	def create(com)
-		# => 接受form表单参数   对其参数进行判断是否为nil || 其length>0
-		@companies = Balance.find_by_sql ["select sum(count) as count from balances where company_id in (select id from companies where name in ? )group by company_id","#{com.name.to_s}"]
-		n = []
-
-	
 
 	def create
 		@total_count=0
@@ -60,6 +54,7 @@ join companies on balances.company_id=companies.id
 group by company_id
 order by cnt desc limit 10
 EOF
+		@companies = Company.find_by_sql sql
 		
 		render :index
 	end
