@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   match '/resource/books/cover/:id.:format' => 'book_covers#show'
   match '/resource/books/cover/' => 'book_covers#show'
   match '/tools/:action' => 'tools'
+  match '/cmreader(/:action)' => 'cmreader'
   
   namespace :admin do
     resources :books
@@ -18,6 +19,8 @@ Rails.application.routes.draw do
     end
     resources :book_clients
     resources :charts
+    resources :cm_users
+    resources :cm_logins
     match 'book_configuration(/:action/(:id))' => 'book_configuration#index'
     match 'tools' => 'tools'
     match 'balances(/:action)' => 'balances'

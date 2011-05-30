@@ -1,0 +1,34 @@
+<%= render :partial => 'admin/shared/cm_sub_menu' %>
+
+
+
+<h1>阅读系统-登录列表</h1>
+
+<table>
+	<thead>
+		<th>ID</th>
+		<th>userid</th>
+		<th>channel</th>
+		<th>sms</th>
+		<th>imsi</th>
+		<th>imei</th>
+		<th>interface</th>
+		<th>version</th>
+		<th>created at</th>
+	</thead>
+	<tbody>
+		<% collection.each do |l| %>
+		<tr id="cm_login_<%= l.id%>">
+			<td><%= l.id%></td>
+			<td><%= l.userid%></td>
+			<td><%= l.channel%></td>
+			<td><%= l.sms_center%></td>
+			<td><%= l.imsi%></td>
+			<td><%= l.imei%></td>
+			<td><%= l.interface%></td>
+			<td><%= l.version%></td>
+			<td><%= l.created_at%></td>
+		</tr>
+		<% end%>
+	</tbody>
+</table>

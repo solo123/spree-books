@@ -1,0 +1,24 @@
+<%= render :partial => 'admin/shared/cm_sub_menu' %>
+
+<h1>阅读-用户列表</h1>
+
+<table>
+	<thead>
+		<th>ID</th>
+		<th>userid</th>
+		<th>channel</th>
+		<th>remark</th>
+		<th>创建日期</th>
+	</thead>
+	<tbody>
+		<% collection.each do |u| %>
+		<tr id="cm_user_<%= u.id%>">u	
+			<td><%= u.id%></td>
+			<td><%= u.userid%></td>
+			<td><%= u.channel%></td>
+			<td><%= u.remark%></td>
+			<td><%= u.created_at%></td>
+		</tr>
+		<% end%>
+	</tbody>
+</table>

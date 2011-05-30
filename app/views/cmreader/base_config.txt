@@ -1,0 +1,6 @@
+11:http://192.168.0.110:3000
+12:/reader/pages/
+13:home
+app_name=[<%= request.env["HTTP_APP_NAME"]%>]
+path=[<%= request.env["PATH_INFO"]%>]
+host=[<%= request.env["HTTP_HOST"]%>]

@@ -26,13 +26,16 @@ class Reader::SyncController < Spree::BaseController
 		render :text => 'tck ok.'
 	end
 	def login
-		s = ''		
-		Preference.where('owner_id=2').each do |p|
-			s << p.name.upcase
-			s << '='
-			s << p.value
-			s << "\n"
-		end
-		render :text => s
+		lg = CmLogin.new
+		lg.channel = params[:channel]
+		lg.userid = params[:userid]
+		lg.sms_center = params[:sms_cnter]
+		lg.imsi = params[:imsi]
+		lg.imei = params[:imei]
+		lg.interface = params[:interface]
+		lg.version = params[:version]
+		lg.save
+		render 'login.txt.erb', :layout => false
 	end
+
 end
