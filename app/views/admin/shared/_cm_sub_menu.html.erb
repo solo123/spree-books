@@ -2,7 +2,10 @@
   <ul id="sub_nav">
     <%= hook :admin_cm_sub_tabs do %>
       <%= tab :cm_users, :match_path => '/cm_users' %>
+      <li><a href="/admin/operates/index">操作记录</a></li>
+      <li><a href="/admin/operates/dbglist">调试记录</a></li>
       <%= tab :cm_logins, :match_path => '/cm_logins', :css_class => 'last' %>
+
     <% end %>
   </ul>
 <% end %>

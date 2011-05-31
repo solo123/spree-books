@@ -1,0 +1,22 @@
+<%= render :partial => 'admin/shared/cm_sub_menu' %>
+
+<h1>阅读-调试操作列表</h1>
+
+<table>
+	<thead>
+		<th>ID</th>
+		<th>操作</th>
+		<th>结果</th>
+		<th>创建日期</th>
+	</thead>
+	<tbody>
+		<% @operates.each do |op| %>
+		<tr id="cm_db_operate_<%= op.id%>">	
+			<td><%= op.id%></td>
+			<td><%= op.operate%></td>
+			<td><%= op.result%></td>
+			<td><%= op.created_at%></td>
+		</tr>
+		<% end%>
+	</tbody>
+</table>
