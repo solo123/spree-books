@@ -19,12 +19,13 @@ order by cnt desc limit 10
 EOF
 		@companies = Company.find_by_sql sql 
 	end
-	
+	# => view视图请求controll
 
 	def create
 		@total_count=0
 		s = []
 		c = []
+
 		@query_data = []
 		bs = Balance.find_by_sql "select balance_date, sum(count) as cnt from balances group by balance_date"
 		bs.each do |b|
@@ -46,8 +47,6 @@ EOF
 	  	end
 	  end		
 		
-		
-		
 		sql = <<EOF
 select  companies.id, company_id,   sum(count) as cnt , name
 from balances
@@ -57,27 +56,6 @@ order by cnt desc limit 10
 EOF
 		@companies = Company.find_by_sql sql
 		
-		
-		
-		
-		
 		render :index
- end
- 
-
-	# => 对于根据公司名的查询
-
-	def query_name
-		n =[]
-		company_name = name
-		
-		if @companies == nil
-		return nil;
-		else
-			@companies.each do |com|
-				n << "[,#{com.count}]"
-			end
-		end
-		@query_data << n.join(',')
 	end
 end
