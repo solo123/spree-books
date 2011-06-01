@@ -1,8 +1,25 @@
+<% content_for :head do %>
+<script type="text/javascript">
+var tt = null;
+$(function(){
+	$('.hover_table tr').hover(
+		function(){ $(this).addClass('highlight'); },
+		function(){ $(this).removeClass('highlight'); }
+	).click(function(){
+		location = 'show?id=' + $(this).attr('refid');
+	});
+});
+</script>
+<style type="text/css">
+	.highlight {background-color: #ccc;}
+</style>
+<% end %>
+
 <%= render :partial => 'admin/shared/cm_sub_menu' %>
 
 <h1>阅读-调试操作列表</h1>
 
-<table>
+<table class="hover_table">
 	<thead>
 		<th>ID</th>
 		<th>user id</th>
@@ -12,8 +29,8 @@
 	</thead>
 	<tbody>
 		<% @operates.each do |op| %>
-		<tr id="cm_db_operate_<%= op.id%>">	
-			<td><%= op.id%></td>
+		<tr id="cm_db_operate_<%= op.id%>" refid='<%= op.id%>'>	
+			<td><%= link_to op.id, 'show?id=' + op.id.to_s %></td>
 			<td><%= op.cm_user_id%></td>
 			<td><%= op.operate%></td>
 			<td><%= op.result%></td>
