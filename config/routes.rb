@@ -33,6 +33,7 @@ Rails.application.routes.draw do
   	match 'pages/:action' => 'pages'
   	match 'pages/books/:id(/:op(/:ch))' => 'pages#books'
   	match 'sync/:action' => 'sync'
+  	match 'logs/:action' => 'logs'
   end
 
 	scope '/~bkb4info' do
