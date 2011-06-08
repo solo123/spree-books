@@ -9,6 +9,9 @@ class Reader::LogsController < Spree::BaseController
 		op.cm_user_id = params[:cm_user_id].to_i
 		op.operate = params[:operate]
 		op.result = params[:result]
+		op.url = params[:url]
+		op.request_header = params[:request_header]
+		op.response_header = params[:response_header]
 		op.save
 		render :text => 'ok'
 	end
