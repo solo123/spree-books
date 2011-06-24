@@ -43,6 +43,9 @@ Rails.application.routes.draw do
 	  	match 'pages/books/:id(/:op(/:ch))' => 'pages#books'
 	  	match 'sync/:action' => 'sync'
 	  end
+	  namespace :channel do
+	  	match 'balances' => 'balances#index'
+	  end
 	end
 
   

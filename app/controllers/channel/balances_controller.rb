@@ -5,7 +5,7 @@ class Channel::BalancesController < Spree::BaseController
 			session["user_return_to"] = "/"
 			#session[:return_to] = "/"
 			redirect_to login_url
-		return
+			return
 		end
 
 		customer = Customer.find_all_by_user_id(@user.id)
@@ -13,6 +13,10 @@ class Channel::BalancesController < Spree::BaseController
 		@company = nil
 
 		if @user.has_role? 'admin'
+			if !params[:company]
+				redirect_to '/admin' 
+				return
+			end
 			@company = Company.find(params[:company])
 		elsif customer.length > 0
 			@company = customer[0].company
