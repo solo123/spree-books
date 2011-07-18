@@ -1,42 +1,76 @@
+<%= content_for :head do %>
 <script type="text/javascript">
   $(function(){
-    $('#tabs').tabs();
-    $("#dialog").dialog({autoOpen: false, show: "blind", hide: "blind", width: 580});
-    
+    $('#search_balance_date_greater_than').datepicker({ dateFormat: 'yy-mm-dd' });
+    $('#search_balance_date_less_than').datepicker({ dateFormat: 'yy-mm-dd' });
   });
-  
- function import_data(){
-    $.ajax({
-      type: 'POST',
-      url: 'import',
-      data: ({authenticity_token: AUTH_TOKEN, brand:$('#import_brand').val(), data: $('#import_text').val()}),
-      success: function(r){
-        if (r=='ok')
-          location.reload();
-        else
-          alert(r);
-      }
-    });
-  }
-  
-  function clear_data(){
-  	$.get('clear');
-  	location.reload();
-  }
-  
-  function reload_query_tab(url){
-  	$('#tabs')
-  		.tabs("url", 0, url)
-  		.tabs("load", 0);
-  }
 </script>
+<% end %>
+<%= render :partial => 'admin/shared/data_sub_menu' %>
+<div class="toolbar">
+  <ul class="actions">
+  	<li>
+  		<%= form_for [:admin, @search] do |f| %>
+  			<%= f.label :channel_contains, "渠道号：" %>
+  			<%= f.text_field :channel_contains, :size => 10 %>
+				<%= f.label :balance_date_greater_than, "开始日期：" %>
+				<%= f.text_field :balance_date_greater_than, :size => 10 %> &nbsp;
+				<%= f.label :balance_date_less_than, "结束日期：" %>
+				<%= f.text_field :balance_date_less_than, :size => 10 %> &nbsp;
 
-<div id="tabs">
-	<ul>
-		<li><a href='balances/query'>数据查询</a></li>
-		<li><a href='balances/new'>导入数据</a></li>
-	</ul>
+		<select id="sele_company">
+			<option value="0">全部公司的数据</option>
+			<% Company.all.each do |c| %>
+			<option <%= 'selected="selected"' if c.id == @current %> value="<%= c.id%>"><%= c.name%></option>
+			<% end %>
+		</select>
+
+
+  		<%= button t('search') %>
+			<% end %>
+  	</li>
+  </ul>
+  <br class="clear">
 </div>
 
+<div id="import_data"></div>
 
-
+<table>
+	<thead>
+		<tr>
+			<th>日期</th>
+			<th>合作商</th>
+			<th>营销ID</th>
+			<th>结算用户数</th>
+			<th>产品类型</th>
+			<th>备注</th>
+		</tr>
+	</thead>
+	<tbody>
+		<%
+		  tot_count = 0
+			@collection.each do |b| %>
+		<tr>
+			<td><%= b.balance_date %></td>
+			<td><%= b.company_id %></td>
+			<td><%= b.channel %></td>
+			<td><%= b.count %></td>
+			<td><%= b.product_id %></td>
+			<td><%= b.remark %></td>
+		</tr>
+		<% 
+			tot_count += b.count
+			end %>
+	</tbody>
+	<thead>
+		<tr style="bgcolor:#aaaaaa;">
+			<th>合计</th>
+			<th></th>
+			<th></th>
+			<th><%= tot_count %></th>
+			<th></th>
+			<th></th>			
+		</tr>
+	</thead>
+</table>
+<%= will_paginate(@collection, :previous_label => "&#171; #{t('previous')}", :next_label => "#{t('next')} &#187;") %>

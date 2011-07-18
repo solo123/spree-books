@@ -14,6 +14,8 @@ Rails.application.routes.draw do
     resources :companies
     resources :customers
     resources :channels
+    resources :balances
+    resources :imports
     resources :book_types do
     	match 'add' => 'book_types#addtype'
     end

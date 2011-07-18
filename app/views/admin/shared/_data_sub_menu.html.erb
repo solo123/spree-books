@@ -2,10 +2,11 @@
   <ul id="sub_nav">
     <%= hook :admin_data_sub_tabs do %>
       <%= tab :charts, :match_path => '/charts' %>
+      <%= tab :balances, :match_path => '/balances'%>
+      <%= tab :imports, :match_path => '/imports'%>
       <%= tab :book_clients, :match_path => '/book_clients' %>
       <%= tab :companies, :match_path => '/companies' %>
       <%= tab :customers, :match_path => '/customers' %>
-      <li class="last"><a href="/admin/balances">导入数据</a></li>
       <%= tab :channels, :match_path => '/channels', :css_class => 'last' %>
     <% end %>
   </ul>

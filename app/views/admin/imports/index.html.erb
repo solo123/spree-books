@@ -1,53 +1,27 @@
+<%= content_for :head do %>
 <script type="text/javascript">
   $(function(){
     $("#dialog").dialog({autoOpen: false, show: "blind", hide: "blind", width: 580});
     $("#dialog").dialog("close");
   });
-  
- function import_data(){
-    $.ajax({
-      type: 'POST',
-      url: 'balances/import',
-      data: ({authenticity_token: AUTH_TOKEN, brand:$('#import_brand').val(), data: $('#import_text').val()}),
-      success: function(r){
-        if (r=='ok')
-        	reload_tab();
-        else
-          alert(r);
-      }
-    });
-  }
-  function reload_tab(){
-  	$('#tabs').tabs("load", 1);
-  }
-  function clear_data(){
-  	$.get('balances/clear');
-  	reload_tab();
-  }
-  function save_data(){
-  	$.get('balances/save');
-  	reload_tab();
-  }
-  function open_dialog(){
-  	 $("#dialog").dialog("open");
-  }
 </script>
-
+<% end %>
+<%= render :partial => 'admin/shared/data_sub_menu' %>
 <div class='toolbar'>
 	
   <ul class='actions'>
     <li>
-      <a href="#" class="button" onclick="open_dialog();">
+      <a href="#" class="button" onclick='$("#dialog").dialog("open");'>
 	      <span><img alt="Add" src="/images/admin/icons/add.png">导入数据</span>
 	  </a>
     </li>
     <li>
-      <a href="#" class="button" onclick="save_data();" >
+      <a href="import/save" class="button" >
 	      <span><img alt="Add" src="/images/admin/icons/add.png">发布数据</span>
 	  	</a>
     </li>
     <li>
-      <a href="#" class="button" onclick="clear_data();">
+      <a href="import/clear" class="button">
       	<span><img alt="Add" src="/images/admin/icons/add.png">清空</span>
       </a>
     </li>
@@ -88,12 +62,13 @@
 		<span class="ui-icon ui-icon-circle-check" style="float:left;margin:0 7px 50px 0;"></span>
 		请把excel表格数据拷贝粘贴到下面文本框中。
 	</p>
+	<%= form_tag 'import/do_import' do %>
     <p>
-      产品：
-      <input type="text" id="import_brand" />
+      产品：<%= text_field_tag 'import_brand' %>
     </p>
 	<p>
-      <textarea id="import_text" cols="80" rows="12" ></textarea>
-      <input type="button" onclick="import_data();" value="导入数据" />
+		<%= text_area_tag 'import_text', nil, :cols => 60 %>
     </p>
+    <%= submit_tag '导入数据' %>
+  <% end %>
 </div>

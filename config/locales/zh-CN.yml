@@ -6,6 +6,8 @@ zh-CN:
   bookname: 书名
   author: 作者
   bookinfo: 图书简介
+  balances: '结算数据'
+  imports: '导入数据'
   picurl: 图片路径
   new_book_type: 添加图书类型
   new_book_chapter: 添加图书章节
