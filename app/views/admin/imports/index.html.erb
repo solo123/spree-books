@@ -16,12 +16,12 @@
 	  </a>
     </li>
     <li>
-      <a href="import/save" class="button" >
+      <a href="imports/save" class="button" >
 	      <span><img alt="Add" src="/images/admin/icons/add.png">发布数据</span>
 	  	</a>
     </li>
     <li>
-      <a href="import/clear" class="button">
+      <a href="imports/clear" class="button">
       	<span><img alt="Add" src="/images/admin/icons/add.png">清空</span>
       </a>
     </li>
@@ -62,7 +62,7 @@
 		<span class="ui-icon ui-icon-circle-check" style="float:left;margin:0 7px 50px 0;"></span>
 		请把excel表格数据拷贝粘贴到下面文本框中。
 	</p>
-	<%= form_tag 'import/do_import' do %>
+	<%= form_tag 'imports/do_import', :method => :get do %>
     <p>
       产品：<%= text_field_tag 'import_brand' %>
     </p>
