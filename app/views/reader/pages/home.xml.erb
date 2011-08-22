@@ -2,12 +2,13 @@
 <page>
 	<header>Reader书城</header>
 	<content>
-		<link><text>1. 浏览历史</text><desc>图书浏览记录</desc><url>history</url></link>
-		<link><text>2. 热门推荐</text><desc>热门或高评价</desc><url>hot_books</url></link>
-		<link><text>3. 版权图书</text><desc>付费图书</desc><url>paid_books</url></link>
+		<link><text>1. 继续阅读</text><desc>图书浏览记录</desc><url>history</url></link>
+		<link><text>2. 快速搜索</text><desc>关键字查找</desc><url>search</url></link>
+		<link><text>3. 阅读排行榜</text><desc>热门或高评价</desc><url>hot_books</url></link>
 		<link><text>4. 我的书架</text><desc>图书收藏夹</desc><url>favorite</url></link>
-		<link><text>5. 系统设置</text><desc>字号、颜色等</desc><url>setting</url></link>
-		<link><text>6. 快速搜索</text><desc>关键字查找</desc><url>search</url></link>
+		<link><text>5. 版权图书</text><desc>付费图书</desc><url>paid_books</url></link>
+		<link><text>6. 系统设置</text><desc>字号、颜色等</desc><url>setting</url></link>
+	
 		<% Book.order('hot desc').limit(20).each do |b| -%> 
 		<link>
 			<arrow>1</arrow>
