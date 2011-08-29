@@ -2,6 +2,19 @@
 class Reader::PagesController < Spree::BaseController
 	respond_to :html, :xml
 	def home
+	  if params[:client_id]
+	    @bk_client = BkClient.find(params[:client_id])
+	  else
+      @bk_client = BkClient.where( ['user_id=? or imsi=? or imei=?', params[:user_id], params[:imsi], params[:imei]]).first
+      if !@bk_client
+        @bk_client = BkClient.new(:user_id => params[:user_id], :imsi => params[:imsi], :imei => params[:imei] )
+        @bk_client.show_name = params[:show_name]
+        @bk_client.mobile_type = params[:mobile_type]
+        @bk_client.screen_width = params[:screen_width]
+        @bk_client.screen_height = params[:screen_height]
+        @bk_client.save
+      end
+	  end
 		render 'home.xml.erb' 
 	end
 	def search_page
