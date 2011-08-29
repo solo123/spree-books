@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   
   namespace :admin do
     resources :books
+    resources :bk_histories
     resources :book_chapters
     resources :companies
     resources :customers

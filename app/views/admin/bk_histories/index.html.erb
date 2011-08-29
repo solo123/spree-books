@@ -1,0 +1,46 @@
+<%= render :partial => 'admin/shared/book_sub_menu' %>
+
+<div class='toolbar'>
+  <ul class='actions'>
+    <li id="new_bk_history_link">
+      <%= button_link_to t("new_bk_history"), new_object_url %>
+    </li>
+  </ul>
+  <br class='clear' />
+</div>
+
+<h1><%= "#{t("actions.listing")} #{t("bk_histories")}" %></h1>
+
+<table class="index">
+	<thead>
+		<tr>
+			<th>Readerid</th>
+			<th>Bookid</th>
+			<th>Chapterid</th>
+			<th>OP</th>
+
+		</tr>
+	</thead>
+	<tbody>
+		<% collection.each do |bc| %>
+		<tr>
+			<td><%= bc.id %></td>
+			<td><%= bc.read_id %></td>
+			<td><%= bc.book_id %></td>
+			<td><%= bc.chapter_id %></td>
+
+			<td class="actions">
+
+		        <%= link_to_edit bc %>
+		        &nbsp;
+		        <%= link_to_clone bc %>
+		        &nbsp;
+		        <%= link_to_delete bc %>
+
+    		</td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>
+<%#= will_paginate(:previous_label => "&#171; #{t('previous')}", :next_label => "#{t('next')} &#187;") %>
+
