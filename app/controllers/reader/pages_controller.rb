@@ -24,7 +24,10 @@ class Reader::PagesController < Spree::BaseController
 		render 'links.xml.erb'
 	end
 	def history
+	  if params[:client_id]
+	  @histories = BkHistory.where(['client_id=? order by created_at',params[:client_id]]).first;
 		render 'history.xml.erb'
+		end
 	end
 	def hot_books
 		render 'hot_books.xml.erb'
@@ -33,14 +36,18 @@ class Reader::PagesController < Spree::BaseController
 		render 'history.xml.erb'
 	end
 	def favorite
-		render 'history.xml.erb'
+	   @favorites = BkFavorite.where(params[:client_id]);
+		render 'favorite.xml.erb'
 	end
 	def setting
 		render 'history.xml.erb'
 	end
 	def search
-		render 'history.xml.erb'
+    @book = Book.find_by_status(99);
+    @chapter = @book.book_chapters if @book
+    render 'links.xml.erb'
 	end
+	
 	def books
 		op = params[:op]
 		@book = Book.find(params[:id])

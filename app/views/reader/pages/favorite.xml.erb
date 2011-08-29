@@ -1,22 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <page>
-	<header>我的浏览历史</header>
+	<header>我的书架</header>
 	<content>
-		<% 
-			@histories.each do |h|
-			book = Book.find(h.book_id)
-			chs = BookChapter.where(['book_id=?', book.id]).count
-			chid = h.chapter_id
-			cha = BookChapter.where(['book_id=? and id=?',book.id,chid])
-			%>
+	<% @favorites.each do |f|
+		book = Book.find(f.book_id)
+		chs = BookChapter.where(['book_id=?', book.id]).count
+		 %>
 		<link>
 			<text><%= book.bookname %></text>
 			<desc>共<%= chs %>章</desc>
-			<url>books/<%= book.id %>/<%= chid %>/chapter</url>
+			<url>books/<%= book.id %></url>
 		
 		</link>
-		<% end %>
 		
+		<% end %>
 	
 	</content>
 	<menu>

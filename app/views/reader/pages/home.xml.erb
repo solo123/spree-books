@@ -13,7 +13,8 @@
 		<link>
 			<arrow>1</arrow>
 			<text><%= b.bookname %></text>
-			<desc>共<%= b.book_chapters.length %>章</desc>
+		<%	chs = BookChapter.where(['book_id=?', b.id]).count %>
+			<desc>共<%=chs %>章</desc>
 			<url>books/<%= b.id %></url>
 		</link>
 		<% end -%>
