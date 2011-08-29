@@ -20,12 +20,15 @@ class Admin::BkToplistsController < ApplicationController
   
   
   def hongxiu_toplist(url)
+    iconv = Iconv.new('UTF-8//IGNORE', 'GBK')
+
     doc = Hpricot(open(url))
     doc.search('#lbox ul').each do |item|
       toplist = BkToplist.new
       toplist.hot_booksite_id = 1
-      toplist.book_name = (item/'.tt3 a').inner_html
-      toplist.book_order_num = (item/'.t1').inner_html
+      
+      toplist.book_name = iconv.iconv (item/'.tt3 a').inner_html
+      toplist.book_order_num =  (item/'.t1').inner_html
       toplist.save
     end
   end
