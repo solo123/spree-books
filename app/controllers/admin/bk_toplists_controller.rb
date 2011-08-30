@@ -25,8 +25,7 @@ class Admin::BkToplistsController < ApplicationController
     doc = Hpricot(open(url))
     doc.search('#lbox ul').each do |item|
       toplist = BkToplist.new
-      toplist.hot_booksite_id = 1
-      
+      toplist.hot_booksite_id = 1  
       toplist.book_name = iconv.iconv (item/'.tt3 a').inner_html
       toplist.book_order_num =  (item/'.t1').inner_html
       toplist.save
@@ -34,33 +33,37 @@ class Admin::BkToplistsController < ApplicationController
   end
   
   def huanxia_toplist(url)
+    iconv = Iconv.new('UTF-8//IGNORE', 'GBK')
+    
     doc = Hpricot(open(url))
     doc.search('#lbox ul').each do |item|
       toplist = BkToplist.new
       toplist.hot_booksite_id = 1
-      toplist.book_name = (item/'.t3 a').inner_html
+      toplist.book_name = iconv.iconv (item/'.t3 a').inner_html
       toplist.book_order_num = (item/'.t1').inner_html
       toplist.save
     end
   end
   
   def qidian_toplist(url)
+    iconv = Iconv.new('UTF-8//IGNORE', 'GBK')
     doc = Hpricot(open(url))
-    doc.search('#list1').each do |item|
+    doc.search('#list1 table tr').each do |item|
       toplist = BkToplist.new
       toplist.hot_booksite_id = 1
-      toplist.book_name = (item/'#textlist .name').inner_html
-      toplist.book_order_num = (item/'').inner_html
+      toplist.book_name = iconv.iconv (item/'td .name').inner_html
+      toplist.book_order_num = (item/'td').inner_html
       toplist.save
     end
   end
   
   def xiaoxiang_toplist(url)
+    iconv = Iconv.new('UTF-8//IGNORE', 'GBK')
     doc = Hpricot(open(url))
-    doc.search('#topten table tbody').each do |item|
+    doc.search('#topten table tr').each do |item|
       toplist = BkToplist.new
       toplist.hot_booksite_id = 1
-      toplist.book_name = (item/'a').inner_html
+      toplist.book_name = iconv.iconv (item/'a').inner_html
       toplist.book_order_num = (item/'b').inner_html
       toplist.save
     end
