@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   
   namespace :admin do
     resources :books
+    resources :bk_histories
     resources :book_chapters
     resources :companies
     resources :customers
@@ -28,6 +29,8 @@ Rails.application.routes.draw do
     match 'balances(/:action)' => 'balances'
     match 'companies/:id/save_customer' => 'companies#save_customer'
     match 'operates/:action' => 'operates'
+    
+    match 'bk_toplists/:action' => 'bk_toplists'
   end
   
   namespace :reader do
