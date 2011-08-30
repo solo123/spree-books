@@ -2,12 +2,19 @@
 class Reader::PagesController < Spree::BaseController
 	respond_to :html, :xml
 	def home
+	  @booksid = nil
+	  if params[:client_id]
+	     client = BkClient.find(params[:client_id])
+       last_read = BkHistory.where(['client_id=?',params[:client_id]]).order('created_at desc').first;
+       if last_read
+         @booksid = last_read.book_id
+         @chid = last_read.chapter_id
+       end
+	  end  
 		render 'home.xml.erb' 
 	end
 	def search_page
-		@title = '搜索结果'
-		@books = Book.where('bookname + " " + author like "%' + params[:s] + '%"').order('bookname').limit(200)
-		render 'books.xml.erb'
+		
 	end
 	def config_page
 		render 'config.xml.erb'
@@ -21,13 +28,11 @@ class Reader::PagesController < Spree::BaseController
 	def menu
 		@book = Book.find_by_status(99);
 		@chapter = @book.book_chapters if @book
-		render 'links.xml.erb'
+		render 'link.xml.erb'
 	end
 	def history
-	  if params[:client_id]
-	  @histories = BkHistory.where(['client_id=? order by created_at',params[:client_id]]).first;
+	  @histories = BkHistory.where(params[:client_id]);
 		render 'history.xml.erb'
-		end
 	end
 	def hot_books
 		render 'hot_books.xml.erb'
@@ -42,10 +47,14 @@ class Reader::PagesController < Spree::BaseController
 	def setting
 		render 'history.xml.erb'
 	end
+	
 	def search
-    @book = Book.find_by_status(99);
-    @chapter = @book.book_chapters if @book
-    render 'links.xml.erb'
+	  iconv = Iconv.new "utf-8//IGNORE", "GBK"
+	  @books = nil 
+	  if params[:s]    
+       @books = Book.where(['bookname || author like ?', "%#{iconv.iconv(params[:s])}%"]).order('bookname').limit(200)
+	  end
+	  render 'books.xml.erb'
 	end
 	
 	def books

@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <page>
-	<header><%= @title %></header>
+	<header>查找结果</header>
 	<content>
+		<% if @books %>
 		<% @books.each do |b| -%> 
 		<link>
 			<arrow>1</arrow>
@@ -10,6 +11,7 @@
 			<url>books/<%= b.id %></url>
 		</link>
 		<% end -%>
+		<% end %>
 	</content>
 	<menu>
 		<link><text>1. 搜索图书</text><url>CMD_SEARCH</url></link>
