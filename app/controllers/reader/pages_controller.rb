@@ -13,7 +13,6 @@ class Reader::PagesController < Spree::BaseController
        end
     end  
 
-
 	  if params[:client_id]
 	    @bk_client = BkClient.find(params[:client_id])
 	  else
@@ -47,11 +46,12 @@ class Reader::PagesController < Spree::BaseController
 		render 'link.xml.erb'
 	end
 	def history
-	  @histories = BkHistory.where(params[:client_id]);
+	  @histories = BkHistory.where(params[:client_id]).limit(15);
 		render 'history.xml.erb'
 	end
 	def hot_books
-		render 'hot_books.xml.erb'
+	  @botsites = BkHotsite.order('rank');
+		render 'hotsite.xml.erb'
 	end
 	def paid_books
 		render 'history.xml.erb'
@@ -93,6 +93,7 @@ class Reader::PagesController < Spree::BaseController
 			else
 				@texts = []
 			end
+			BkHistory.add_history(params[:client_id], @book.id, @chapter.id)
 			@prev_ch = @chapter.chapterorder > 1 ? "books/#{@chapter.book_id}/chapter/#{@chapter.chapterorder - 1}" : "CMD_ALERT 已经是第一章"
 			@next_ch = @chapter.chapterorder < @book.book_chapters.count ? "books/#{@chapter.book_id}/chapter/#{@chapter.chapterorder + 1}" : "CMD_ALERT 已经是最后一章"
 
@@ -101,4 +102,11 @@ class Reader::PagesController < Spree::BaseController
 			render 'book_cover.xml.erb'
 		end
 	end
+	
+	 def toplist
+    hot_id = params[:id]
+    @bk_toplists =BkToplist.where(['bk_hotsite_id=?',params[:id]]).order('rank');
+    render 'toplist.xml.erb'
+  end
+	
 end

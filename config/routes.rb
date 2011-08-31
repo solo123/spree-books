@@ -39,7 +39,7 @@ Rails.application.routes.draw do
   	match 'pages/books/:id(/:op(/:ch))' => 'pages#books'
   	match 'sync/:action' => 'sync'
   	match 'logs/:action' => 'logs'
-  
+    match 'pages/toplist/:id' => 'pages#toplist'
   end
 
 	scope '/~bkb4info' do
@@ -49,6 +49,7 @@ Rails.application.routes.draw do
 	  	match 'pages/books/:id(/:op(/:ch))' => 'pages#books'
 	  	match 'sync/:action' => 'sync'
 	    match 'pages/history' => 'pages#history'
+	    match 'pages/toplist/:id' => 'pages#toplist'
 	  end
 	  namespace :channel do
 	  	match 'balances' => 'balances#index'

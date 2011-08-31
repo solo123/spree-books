@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<page>
+	<header>阅读排行书名</header>
+	<content>
+	<% @bk_toplists.each do |b| 
+		book = Book.find(b.book_id)
+		chs = BookChapter.where(['book_id=?', book.id]).count
+	%>
+		<link>
+			<text><%= b.book_name %></text>
+			<desc>共<%= chs %>章</desc>
+			<url>books/<%= b.book_id %></url>	
+		</link>
+		
+	 <% end %>
+	</content>
+	<menu>
+		<link><text>1. 搜索图书</text><url>CMD_SEARCH</url></link>
+		<link><text>2. 系统配置</text><url>config_page</url></link>
+		<link><text>3. 用户帮助</text><url>help_page</url></link>
+		<link><text>4. 软件升级</text><url>upgrade_page</url></link>
+		<link><text>5. 返回首页</text><url>home</url></link>
+	</menu>
+	<rightkey>
+		<text>首页</text><url>home</url>
+	</rightkey>
+</page>
