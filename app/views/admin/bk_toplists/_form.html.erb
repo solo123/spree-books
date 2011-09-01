@@ -1,0 +1,20 @@
+<div class="yui-gc">
+  <div class="yui-u first">
+      <%= f.field_container :name do %>
+        <%= f.label :name, t("name") %> <span class="required">*</span><br />
+        <%= f.text_field :name, :class => 'fullwidth title'  %>
+        <%= f.error_message_on :name %>
+      <% end %> 
+      <%= f.field_container :url do %>
+        <%= f.label :url, t("url") %> <span class="required">*</span><br />
+        <%= f.text_field :url, :class => 'fullwidth title'  %>
+        <%= f.error_message_on :url %>
+      <% end %>
+      <%= f.field_container :status do %>
+        <%= f.label :status, t("status") %> <span class="required">*</span><br />
+        <%= f.text_field :status, :class => 'fullwidth title'  %>
+        <%= f.error_message_on :status %>
+      <% end %>
+  </div>
+</div>
+      

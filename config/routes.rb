@@ -30,7 +30,7 @@ Rails.application.routes.draw do
     match 'companies/:id/save_customer' => 'companies#save_customer'
     match 'operates/:action' => 'operates'
     
-    match 'bk_toplists/:action' => 'bk_toplists'
+    match 'bk_toplists(/:action)' => 'bk_toplists'
   end
   
   namespace :reader do
