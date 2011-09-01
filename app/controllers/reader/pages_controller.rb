@@ -46,7 +46,7 @@ class Reader::PagesController < Spree::BaseController
 		render 'link.xml.erb'
 	end
 	def history
-	  @histories = BkHistory.where(params[:client_id]).limit(15);
+	  @histories = BkHistory.where(['client_id=?',params[:client_id]]).limit(15);
 		render 'history.xml.erb'
 	end
 	def hot_books
@@ -57,7 +57,7 @@ class Reader::PagesController < Spree::BaseController
 		render 'history.xml.erb'
 	end
 	def favorite
-	   @favorites = BkFavorite.where(params[:client_id]);
+	   @favorites = BkFavorite.where(['client_id=?',params[:client_id]]).limit(15);
 		render 'favorite.xml.erb'
 	end
 	def setting
