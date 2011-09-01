@@ -1,6 +1,25 @@
+
+
 <h1>排行榜</h1>
 
-     ID：
-	<%= text_field_tag :id %> <br />
-	
-	<input type="submit" value="确定">
+<table>
+
+ <tr>
+    <th>序号</th>
+    <th>网站</th>
+    <th>链接</th>
+    <th>操作</th>
+ </tr>
+  <% BkHotsite.where('1=1').each do |bk| %>
+ <tr>
+    <td><%= bk.id %></td>
+    <td><%= bk.name %></td>
+    <td><%= bk.url %></td>
+    <td><a href="toplist?id=<%= bk.id%>">Refresh</a></td> 	
+    <% end %>
+ </tr>
+</table>
+
+<br />
+
+
