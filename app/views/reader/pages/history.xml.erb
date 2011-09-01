@@ -2,14 +2,22 @@
 <page>
 	<header>我的浏览历史</header>
 	<content>
-		<% Book.order('hot desc').limit(20).each do |b| -%> 
+		<% 
+			@histories.each do |h|
+			book = Book.find(h.book_id)
+			chs = BookChapter.where(['book_id=?', book.id]).count
+			chid = h.chapter_id
+			cha = BookChapter.where(['book_id=? and id=?',book.id,chid])
+			%>
 		<link>
-			<arrow>1</arrow>
-			<text><%= b.bookname %></text>
-			<desc>共<%= b.book_chapters.length %>章</desc>
-			<url>books/<%= b.id %></url>
+			<text><%= book.bookname %></text>
+			<desc>共<%= chs %>章</desc>
+			<url>books/<%= book.id %>/<%= chid %>/chapter</url>
+		
 		</link>
-		<% end -%>
+		<% end %>
+		
+	
 	</content>
 	<menu>
 		<link><text>1. 搜索图书</text><url>CMD_SEARCH</url></link>

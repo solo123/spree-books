@@ -1,17 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <page>
-	<header>查找结果</header>
+	<header>我的书架</header>
 	<content>
-		<% if @books %>
-		<% @books.each do |b| -%> 
+	<% @favorites.each do |f|
+		book = Book.find(f.book_id)
+		chs = BookChapter.where(['book_id=?', book.id]).count
+		 %>
 		<link>
-			<arrow>1</arrow>
-			<text><%= b.bookname %></text>
-			<desc>共<%= b.book_chapters.length %>章</desc>
-			<url>books/<%= b.id %></url>
+			<text><%= book.bookname %></text>
+			<desc>共<%= chs %>章</desc>
+			<url>books/<%= book.id %></url>
+		
 		</link>
-		<% end -%>
+		
 		<% end %>
+	
 	</content>
 	<menu>
 		<link><text>1. 搜索图书</text><url>CMD_SEARCH</url></link>
