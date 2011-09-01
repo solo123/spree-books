@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<page>
+	<header>热门网站</header>
+	<content>
+	<% @botsites.each do |f| %>
+		<link>
+			<text><%= f.name %></text>
+			<desc></desc>
+			<url>toplist/<%= f.id %></url>	
+		</link>
+		
+	 <% end %>
+	</content>
+	<menu>
+		<link><text>1. 搜索图书</text><url>CMD_SEARCH</url></link>
+		<link><text>2. 系统配置</text><url>config_page</url></link>
+		<link><text>3. 用户帮助</text><url>help_page</url></link>
+		<link><text>4. 软件升级</text><url>upgrade_page</url></link>
+		<link><text>5. 返回首页</text><url>home</url></link>
+	</menu>
+	<rightkey>
+		<text>首页</text><url>home</url>
+	</rightkey>
+</page>
