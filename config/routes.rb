@@ -31,6 +31,7 @@ Rails.application.routes.draw do
     match 'operates/:action' => 'operates'
     
     match 'bk_toplists(/:action)' => 'bk_toplists'
+    match 'bk_clients(/:action)' => 'bk_clients'
   end
   
   namespace :reader do
@@ -40,6 +41,7 @@ Rails.application.routes.draw do
   	match 'sync/:action' => 'sync'
   	match 'logs/:action' => 'logs'
     match 'pages/toplist/:id' => 'pages#toplist'
+   
   end
 
 	scope '/~bkb4info' do

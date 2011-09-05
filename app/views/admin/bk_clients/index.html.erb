@@ -1,0 +1,32 @@
+
+<h1>用户信息</h1>
+
+<table>
+
+ <tr>
+    <th>id</th>
+    <th>showname</th>
+    <th>userid</th>
+    <th>imsi</th>
+    <th>imei</th>
+    <th>timestamp</th>
+    <th>mobile_type</th>
+    <th>screen_width</th>
+    <th>screen_height</th>
+ </tr>
+  <% BkClient.where('1=1').each do |c| %>
+ <tr>
+    <td><%= c.id %></td>
+    <td><%= c.show_name %></td>
+    <td><%= c.user_id %></td>
+    <td><%= c.imsi %></td>
+    <td><%= c.imei %></td>
+    <td><%= c.timestamp%></td>
+    <td><%= c.mobile_type %></td>
+    <td><%= c.screen_width %></td>
+    <td><%= c.screen_height %></td>
+ </tr>
+   <% end %>
+</table>
+
+<br />
