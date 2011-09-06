@@ -2,19 +2,15 @@
 class Reader::PagesController < Spree::BaseController
 	respond_to :html, :xml
 	def home
-
     @booksid = nil
-    if params[:client_id]
-       client = BkClient.find(params[:client_id])
-       last_read = BkHistory.where(['client_id=?',params[:client_id]]).order('created_at desc').first;
+    @bk_client = nil
+    @bk_client = BkClient.find_by_id(params[:client_id]) if params[:client_id]
+    if @bk_client   
+       last_read = BkHistory.where(['client_id=?', @bk_client.id]).order('created_at desc').first
        if last_read
          @booksid = last_read.book_id
          @chid = last_read.chapter_id
        end
-    end  
-
-	  if params[:client_id]
-	    @bk_client = BkClient.find(params[:client_id])
 	  else
       @bk_client = BkClient.where( ['user_id=? or imsi=? or imei=?', params[:user_id], params[:imsi], params[:imei]]).first
       if !@bk_client
@@ -28,6 +24,8 @@ class Reader::PagesController < Spree::BaseController
 	  end
 		render 'home.xml.erb' 
 	end
+	
+	
 	def search_page
 		
 	end

@@ -1,42 +1,42 @@
 ---
 1:
   id: 1
-  hot_book_name: hongxiu
-  hot_book_url: http://top.hongxiu.com/rqab.html
-  hot_book_state: 1
+  name: hongxiu
+  url: http://top.hongxiu.com/rqab.html
+  status: 1
 2:
   id: 2
-  hot_book_name: huanxia
-  hot_book_url: http://www.huanxia.com/top_12_1.html
-  hot_book_state: 1
+  name: huanxia
+  url: http://www.huanxia.com/top_12_1.html
+  status: 1
 3:
   id: 3
-  hot_book_name: qidian
-  hot_book_url: http://top.qidian.com/Book/TopDetail.aspx?TopType=3
-  hot_book_state: 1
+  name: qidian
+  url: http://top.qidian.com/Book/TopDetail.aspx?TopType=3
+  status: 1
 4:
   id: 4
-  hot_book_name: xiaoxiang
-  hot_book_url: http://read.xxsy.net/topten.asp?topvalue=13
-  hot_book_state: 1
+  name: xiaoxiang
+  url: http://read.xxsy.net/topten.asp?topvalue=13
+  status: 1
 5:
   id: 5
-  hot_book_name: feiku
-  hot_book_url: http://www.feiku.com/Book/OriginSort/?Order=1
-  hot_book_state: 1
+  name: feiku
+  url: http://www.feiku.com/Book/OriginSort/?Order=1
+  status: 1
 6:
   id: 6
-  hot_book_name: zhulang
-  hot_book_url: http://www.zhulang.com/bookarray.php
-  hot_book_state: 1
+  name: zhulang
+  url: http://www.zhulang.com/bookarray.php
+  status: 1
 7:
   id: 7
-  hot_book_name: 17k
-  hot_book_url: http://top.17k.com/hclick_wz_week.shtml
-  hot_book_state: 1
+  name: 17k
+  url: http://top.17k.com/hclick_wz_week.shtml
+  status: 1
 8:
   id: 8
-  hot_book_name: rongshuxia
-  hot_book_url: http://www.rongshuxia.com/list/?cat=&type=&status=&wnum=&char=&sort=allviews
-  hot_book_state: 1
+  name: rongshuxia
+  url: http://www.rongshuxia.com/list/?cat=&type=&status=&wnum=&char=&sort=allviews
+  status: 1
  
