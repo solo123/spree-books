@@ -2,7 +2,8 @@
   <ul id="sub_nav">
     <%= hook :admin_book_sub_tabs do %>
       <%= tab :books, :match_path => '/books' %>
-      <%= tab :book_types, :match_path => '/book_types', :css_class => 'last' %>
+      <%= tab :book_types, :match_path => '/book_types'  %>
+      <%= tab :bk_toplists, :match_path => '/bk_toplists', :css_class => 'last'%>
     <% end %>
   </ul>
 <% end %>

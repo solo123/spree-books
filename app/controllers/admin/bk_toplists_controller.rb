@@ -2,7 +2,7 @@
 require 'open-uri'
 require 'hpricot'
 
-class Admin::BkToplistsController < ApplicationController
+class Admin::BkToplistsController < Admin::BaseController
   def toplist
     site = BkHotsite.find(params[:id])
     BkToplist.where(:bk_hotsite_id => site.id).each do |bk|
