@@ -46,7 +46,7 @@ class Reader::PagesController < Spree::BaseController
 		render 'link.xml.erb'
 	end
 	def history
-	  @histories = BkHistory.where(['client_id=?',params[:client_id]]).limit(15);
+	  @histories = BkHistory.where(['client_id=?',params[:client_id]]).order('created_at desc').limit(15);
 		render 'history.xml.erb'
 	end
 	def hot_books
@@ -57,7 +57,7 @@ class Reader::PagesController < Spree::BaseController
 		render 'history.xml.erb'
 	end
 	def favorite
-	   @favorites = BkFavorite.where(['client_id=?',params[:client_id]]).limit(15);
+	   @favorites = BkFavorite.where(['client_id=?',params[:client_id]]).order('created_at desc').limit(15);
 		render 'favorite.xml.erb'
 	end
 	def setting
@@ -93,10 +93,10 @@ class Reader::PagesController < Spree::BaseController
 			else
 				@texts = []
 			end
-			BkHistory.add_history(params[:client_id], @book.id, @chapter.id)
+			
 			@prev_ch = @chapter.chapterorder > 1 ? "books/#{@chapter.book_id}/chapter/#{@chapter.chapterorder - 1}" : "CMD_ALERT 已经是第一章"
 			@next_ch = @chapter.chapterorder < @book.book_chapters.count ? "books/#{@chapter.book_id}/chapter/#{@chapter.chapterorder + 1}" : "CMD_ALERT 已经是最后一章"
-
+      BkHistory.add_history(params[:client_id], @book.id, @chapter.chapterorder)
 			render 'book_chapter.xml.erb'
 		else
 			render 'book_cover.xml.erb'

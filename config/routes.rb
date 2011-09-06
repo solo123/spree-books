@@ -17,6 +17,7 @@ Rails.application.routes.draw do
     resources :channels
     resources :balances
     resources :imports
+    resources :operates
     resources :book_types do
     	match 'add' => 'book_types#addtype'
     end
@@ -29,6 +30,7 @@ Rails.application.routes.draw do
     match 'balances(/:action)' => 'balances'
     match 'companies/:id/save_customer' => 'companies#save_customer'
     match 'operates/:action' => 'operates'
+    match 'activetion/(:action)' => 'activetion'
     
     match 'bk_toplists(/:action)' => 'bk_toplists'
     match 'bk_clients(/:action)' => 'bk_clients'
@@ -56,6 +58,7 @@ Rails.application.routes.draw do
 	  namespace :channel do
 	  	match 'balances' => 'balances#index'
 	  end
+	 
 	end
 
   
