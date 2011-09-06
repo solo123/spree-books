@@ -1,5 +1,12 @@
 <%= render :partial => 'admin/shared/book_sub_menu' %>
 
+
+<script type="text/javascript">
+$('a').bind('ajax:success', function(){
+   alert("Success!");
+});
+</script>
+
 <h1>排行榜</h1>
 
 <table>
@@ -15,7 +22,9 @@
     <td><%= bk.id %></td>
     <td><%= bk.name %></td>
     <td><%= bk.url %></td>
-    <td><a href="toplist?id=<%= bk.id%>">Refresh</a></td> 	
+    <td>
+    	<%= link_to 'refresh', admin_bk_toplist_path(bk), :remote => true %>
+    </td> 	
     <% end %>
  </tr>
 </table>

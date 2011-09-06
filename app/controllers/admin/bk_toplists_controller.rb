@@ -3,7 +3,7 @@ require 'open-uri'
 require 'hpricot'
 
 class Admin::BkToplistsController < Admin::BaseController
-  def toplist
+  def show
     site = BkHotsite.find(params[:id])
     BkToplist.where(:bk_hotsite_id => site.id).each do |bk|
        bk.delete
@@ -17,8 +17,10 @@ class Admin::BkToplistsController < Admin::BaseController
     elsif site.name == 'xiaoxiang'
       xiaoxiang_toplist site
     else
-      render 'error!'
+      render :text => 'error!'
     end
+    
+    render :text => 'refesh toplist ok!'
   end
   
   
