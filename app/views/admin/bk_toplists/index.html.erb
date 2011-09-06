@@ -8,7 +8,7 @@ $('a').bind('ajax:success', function(){
 </script>
 
 <h1>排行榜</h1>
-
+<div id='result'></div>
 <table>
 
  <tr>
@@ -23,7 +23,7 @@ $('a').bind('ajax:success', function(){
     <td><%= bk.name %></td>
     <td><%= bk.url %></td>
     <td>
-    	<%= link_to 'refresh', admin_bk_toplist_path(bk), :remote => true %>
+    	<%= link_to 'refresh', admin_bk_toplist_path(bk), :remote => true, 'data-update' => 'result' %>
     </td> 	
     <% end %>
  </tr>
