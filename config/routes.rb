@@ -33,7 +33,6 @@ Rails.application.routes.draw do
     match 'operates/:action' => 'operates'
     match 'activetion/(:action)' => 'activetion'
     
-    match 'bk_toplists(/:action)' => 'bk_toplists'
     match 'bk_clients(/:action)' => 'bk_clients'
   end
   
