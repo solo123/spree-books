@@ -3,8 +3,9 @@
 	<header>热门书籍</header>
 	<content>
 	<% @bk_toplists.each do |b| 
-		book = Book.find(b.book_id)
-		chs = BookChapter.where(['book_id=?', book.id]).count
+		book = Book.find_by_id(b.book_id)
+		chs = 0
+		chs = BookChapter.where(['book_id=?', book.id]).count if book
 	%>
 		<link>
 			<text><%= b.book_name %></text>
