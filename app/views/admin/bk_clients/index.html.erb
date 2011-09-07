@@ -1,3 +1,5 @@
+<%= render :partial => 'admin/shared/cm_sub_menu' %>
+
 
 <h1>用户信息</h1>
 
@@ -13,6 +15,7 @@
     <th>mobile_type</th>
     <th>screen_width</th>
     <th>screen_height</th>
+    <th>Operating</th>
  </tr>
   <% BkClient.where('1=1').each do |c| %>
  <tr>
@@ -25,6 +28,7 @@
     <td><%= c.mobile_type %></td>
     <td><%= c.screen_width %></td>
     <td><%= c.screen_height %></td>
+    <td><%= link_to 'Destroy', admin_bk_client_path(c),:remote => true, :confirm => 'Are you sure?', :method => :delete %></td>
  </tr>
    <% end %>
 </table>

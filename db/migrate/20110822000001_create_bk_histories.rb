@@ -20,6 +20,7 @@ class CreateBkHistories < ActiveRecord::Migration
       t.string :book_name
       t.integer :book_id
       t.integer :rank
+      t.string :source_url
       t.timestamps
     end
 

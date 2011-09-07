@@ -26,6 +26,7 @@ Rails.application.routes.draw do
     resources :cm_users
     resources :cm_logins
     resources :bk_toplists
+    resources :bk_clients
     match 'book_configuration(/:action/(:id))' => 'book_configuration#index'
     match 'tools' => 'tools'
     match 'balances(/:action)' => 'balances'
@@ -33,7 +34,6 @@ Rails.application.routes.draw do
     match 'operates/:action' => 'operates'
     match 'activetion/(:action)' => 'activetion'
     
-    match 'bk_clients(/:action)' => 'bk_clients'
   end
   
   namespace :reader do
