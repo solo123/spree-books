@@ -30,8 +30,7 @@ Rails.application.routes.draw do
     match 'balances(/:action)' => 'balances'
     match 'companies/:id/save_customer' => 'companies#save_customer'
     match 'operates/:action' => 'operates'
-    match 'activetion/(:action)' => 'activetion'
-    
+
     match 'bk_toplists(/:action)' => 'bk_toplists'
   end
   
@@ -42,6 +41,8 @@ Rails.application.routes.draw do
   	match 'sync/:action' => 'sync'
   	match 'logs/:action' => 'logs'
     match 'pages/toplist/:id' => 'pages#toplist'
+    match 'pages/collection_book/:id' => 'pages#collection_book'
+    match 'activetion/(:action)' => 'activetion'
   end
 
 	scope '/~bkb4info' do

@@ -4,6 +4,7 @@ class Reader::PagesController < Spree::BaseController
 	def home
 
     @booksid = nil
+    @cl_id = params[:client_id]
     if params[:client_id]
        client = BkClient.find(params[:client_id])
        last_read = BkHistory.where(['client_id=?',params[:client_id]]).order('created_at desc').first;
@@ -108,5 +109,13 @@ class Reader::PagesController < Spree::BaseController
     @bk_toplists =BkToplist.where(['bk_hotsite_id=?',params[:id]]).order('rank');
     render 'toplist.xml.erb'
   end
+	
+	def collection_book  
+	  @bf = BkFavorite.where(['client_id=? and book_id=?',params[:client_id],params[:id]])
+	  if @bf.count < 1
+	    BkFavorite.add_favorite(params[:client_id], params[:id])
+	  end
+	     render 'collection_book.xml.erb'  
+	end
 	
 end

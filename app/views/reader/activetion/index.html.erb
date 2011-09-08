@@ -1,19 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <page>
-	<header>热门书籍</header>
+	<header>激活请求</header>
 	<content>
-	<% @bk_toplists.each do |b| 
-		book = Book.find(b.book_id)
-		chs = BookChapter.where(['book_id=?', book.id]).count
-		@books_id= b.book_id
-	%>
-		<link>
-			<text><%= b.book_name %></text>
-			<desc>共<%= chs %>章</desc>
-			<url>books/<%= b.book_id %></url>	
-		</link>
+		<text>由前台发送一个数据请求激活，后台做出相应的响应操作
+			<br/>
+			参数1<%= @centerNumber %><br/>
+			参数2<%= @channel %><br/>
+			参数3<%= @client_id %><br/>
+			中心号码 <%= @num %>
+			</text>
 		
-	 <% end %>
 	</content>
 	<menu>
 		<link><text>1. 搜索图书</text><url>CMD_SEARCH</url></link>
@@ -22,7 +18,6 @@
 		<link><text>4. 软件升级</text><url>upgrade_page</url></link>
 		<link><text>5. 返回首页</text><url>home</url></link>
 	</menu>
-	      
 	<rightkey>
 		<text>首页</text><url>home</url>
 	</rightkey>
