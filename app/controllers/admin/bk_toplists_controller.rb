@@ -33,6 +33,7 @@ class Admin::BkToplistsController < Admin::BaseController
       toplist.bk_hotsite_id = s.id  
       toplist.book_name = iconv.iconv (item/'.tt3 a').inner_html
       toplist.rank =  (item/'.t1').inner_html
+      
       toplist.save
     end
   end
