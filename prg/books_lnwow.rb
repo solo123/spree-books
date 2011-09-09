@@ -3,7 +3,7 @@ require 'rexml/document'
 require 'hpricot'
 
 class BooksLnwow
-  attr_accessor :title, :author, :last_update
+  #attr_accessor :title, :author, :last_update
   def initialize
     @base_url = 'http://www.lnwow.com'
     @book_path = '../public/books/'
@@ -38,12 +38,23 @@ class BooksLnwow
       doc = Hpricot(f)
       div = doc / 'div.nr_wz'
       txt = div.inner_html.split("\n").join
-      exp = /<p>(.*)<\/p>/.match(txt)
+      exp = /<p>(.*)/.match(txt)
       txt = exp[1] if exp
       exp = /(.*)<iframe/.match(txt)
       txt = exp[1] if exp
-      txt = txt.split("<br /><br />").join("\n")
+      exp = txt.gsub(/<div style="display:none">.*?<\/div>/,'')
+      txt = exp.split("<br /><br />").join("\n")
+      txt = txt.split("<br /></span><br />").join("\n")
+      txt = txt.gsub(/&nbsp;/,'')
+      txt = txt.gsub(/.*<br \/>/,'')
       
+      #exp = /<p>(.*)<\/p>/.match(txt)
+      #txt = exp[1] if exp
+      #exp = /(.*)<iframe/.match(txt)
+      #txt = exp[1] if exp
+      #txt = txt.split("<br /><br />").join("\n")
+      #txt = txt.gsub(/&nbsp;/,'')
+            
       fn = @book_path + @title + "/ch_" + ("%05d" % i) + '.txt'
       puts fn
       File.open(fn, 'w') do |f_ch|
