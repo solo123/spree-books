@@ -75,9 +75,9 @@ class Reader::PagesController < Spree::BaseController
 	end
 	
 	def books
-		op = params[:op]
-		@book = Book.find(params[:id])
-		 if op == 'catalog'
+	op = params[:op]
+    @book = Book.find(params[:id])
+    if op == 'catalog'
       render 'book_catalog.xml.erb'
     elsif op == 'chapter'
       if params[:ch]
@@ -92,17 +92,16 @@ class Reader::PagesController < Spree::BaseController
       if @chapter && @chapter.content
         @texts = @chapter.content.split "\n"
       else
-      @texts = []
+        @texts = []
       end
+      
       @prev_ch = @chapter.chapterorder > 1 ? "books/#{@chapter.book_id}/chapter/#{@chapter.chapterorder - 1}" : "CMD_ALERT 已经是第一章"
       @next_ch = @chapter.chapterorder < @book.book_chapters.count ? "books/#{@chapter.book_id}/chapter/#{@chapter.chapterorder + 1}" : "CMD_ALERT 已经是最后一章"
       BkHistory.add_history(params[:client_id], @book.id, @chapter.chapterorder)
       render 'book_chapter.xml.erb'
     else
-      if op == 'views'
       @book.update_attributes(:views => (@book.views + 1)) #把当前看的书的阅读记录加1
       render 'book_cover.xml.erb'
-      end
     end
 	end
 	
