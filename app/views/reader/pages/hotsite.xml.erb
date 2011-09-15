@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <page>
-	<header>热门网站</header>
+	<header>热门书籍</header>
 	<content>
-	<% @botsites.each do |f| %>
-		<link>
-			<text><%= f.name %></text>
-			<desc></desc>
-			<url>toplist/<%= f.id %></url>	
-		</link>
+	<% @hot_books.each do |b|
+		chs = BookChapter.where(['book_id=?', b.id]).count
+		@books_id= b.id
+		 %>
+		 <link>
+				<text><%= b.bookname %></text>
+				<desc>共<%= chs %>章</desc>
+				<url>books/<%= b.id %>/views</url>	
+			</link>
 		
 	 <% end %>
 	</content>

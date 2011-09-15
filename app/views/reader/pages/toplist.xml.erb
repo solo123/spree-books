@@ -7,13 +7,13 @@
 		chs = BookChapter.where(['book_id=?', book.id]).count
 		@books_id= b.book_id
 	%>
-		<link>
-			<text><%= b.book_name %></text>
-			<desc>共<%= chs %>章</desc>
-			<url>books/<%= b.book_id %></url>	
-		</link>
 		
-	 <% end %>
+		 <link>
+				<text><%= b.book_name %></text>
+				<desc>共<%= chs %>章</desc>
+				<url>books/<%= b.book_id %></url>	
+			</link>
+	 <% end %>	 
 	</content>
 	<menu>
 		<link><text>1. 搜索图书</text><url>CMD_SEARCH</url></link>

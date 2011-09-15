@@ -51,7 +51,7 @@ class Reader::PagesController < Spree::BaseController
 		render 'history.xml.erb'
 	end
 	def hot_books
-	  @botsites = BkHotsite.order('rank');
+	  @hot_books = Book.order('views desc').limit(15)
 		render 'hotsite.xml.erb'
 	end
 	def paid_books
@@ -77,31 +77,33 @@ class Reader::PagesController < Spree::BaseController
 	def books
 		op = params[:op]
 		@book = Book.find(params[:id])
-		if op == 'catalog'
-			render 'book_catalog.xml.erb'
-		elsif op == 'chapter'
-			if params[:ch]
-				@chapter = BookChapter.find(:first, :conditions => ["book_id=? and chapterorder=?", params[:id], params[:ch]])
-			else
-				BookChapter.find_all_by_book_id(params[:id]).each_with_index do |b, idx|
-					b.chapterorder = idx + 1
-					b.save
-				end
-				@chapter = @book.book_chapters.order('chapterorder').first
-			end
-			if @chapter && @chapter.content
-				@texts = @chapter.content.split "\n"
-			else
-				@texts = []
-			end
-			
-			@prev_ch = @chapter.chapterorder > 1 ? "books/#{@chapter.book_id}/chapter/#{@chapter.chapterorder - 1}" : "CMD_ALERT 已经是第一章"
-			@next_ch = @chapter.chapterorder < @book.book_chapters.count ? "books/#{@chapter.book_id}/chapter/#{@chapter.chapterorder + 1}" : "CMD_ALERT 已经是最后一章"
+		 if op == 'catalog'
+      render 'book_catalog.xml.erb'
+    elsif op == 'chapter'
+      if params[:ch]
+        @chapter = BookChapter.find(:first, :conditions => ["book_id=? and chapterorder=?", params[:id], params[:ch]])
+      else
+        BookChapter.find_all_by_book_id(params[:id]).each_with_index do |b, idx|
+          b.chapterorder = idx + 1
+          b.save
+        end
+        @chapter = @book.book_chapters.order('chapterorder').first
+      end
+      if @chapter && @chapter.content
+        @texts = @chapter.content.split "\n"
+      else
+      @texts = []
+      end
+      @prev_ch = @chapter.chapterorder > 1 ? "books/#{@chapter.book_id}/chapter/#{@chapter.chapterorder - 1}" : "CMD_ALERT 已经是第一章"
+      @next_ch = @chapter.chapterorder < @book.book_chapters.count ? "books/#{@chapter.book_id}/chapter/#{@chapter.chapterorder + 1}" : "CMD_ALERT 已经是最后一章"
       BkHistory.add_history(params[:client_id], @book.id, @chapter.chapterorder)
-			render 'book_chapter.xml.erb'
-		else
-			render 'book_cover.xml.erb'
-		end
+      render 'book_chapter.xml.erb'
+    else
+      if op == 'views'
+      @book.update_attributes(:views => (@book.views + 1)) #把当前看的书的阅读记录加1
+      render 'book_cover.xml.erb'
+      end
+    end
 	end
 	
 	 def toplist
