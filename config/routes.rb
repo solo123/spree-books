@@ -25,6 +25,8 @@ Rails.application.routes.draw do
     resources :charts
     resources :cm_users
     resources :cm_logins
+    resources :bk_clients
+    resources :bk_toplists
     match 'book_configuration(/:action/(:id))' => 'book_configuration#index'
     match 'tools' => 'tools'
     match 'balances(/:action)' => 'balances'
