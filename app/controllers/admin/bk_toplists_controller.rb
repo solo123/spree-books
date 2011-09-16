@@ -4,7 +4,7 @@ require 'hpricot'
 
 class Admin::BkToplistsController < Admin::BaseController
   def show
-    site = BkHotsite.find(params[:id])
+    site = BkHotsite.find_by_id(params[:id])
     BkToplist.where(:bk_hotsite_id => site.id).each do |bk|
        bk.delete
     end
