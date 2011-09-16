@@ -97,6 +97,7 @@ class Reader::PagesController < Spree::BaseController
       BkHistory.add_history(params[:client_id], @book.id, @chapter.chapterorder)
 			render 'book_chapter.xml.erb'
 		else
+		  @book..update_attributes(:views => (@book.views + 1)) 
 			render 'book_cover.xml.erb'
 		end
 	end
