@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-	 root :to => 'channel/balances#index'
+   root :to => 'channel/balances#index'
   match '/visit' => 'home#list'
   match '/vamp/mtkbook/details.aspx' => 'books#details'
   match 'cminterface/sms/sync.aspx' => 'books#sync'
@@ -19,7 +19,7 @@ Rails.application.routes.draw do
     resources :imports
     resources :operates
     resources :book_types do
-    	match 'add' => 'book_types#addtype'
+      match 'add' => 'book_types#addtype'
     end
     resources :book_clients
     resources :charts
@@ -32,39 +32,39 @@ Rails.application.routes.draw do
     match 'balances(/:action)' => 'balances'
     match 'companies/:id/save_customer' => 'companies#save_customer'
     match 'operates/:action' => 'operates'
-
+    match 'activetion/(:action)' => 'activetion'
     match 'bk_toplists(/:action)' => 'bk_toplists'
   end
   
   namespace :reader do
-  	resources :books
-  	match 'pages/:action' => 'pages'
-  	match 'pages/books/:id(/:op(/:ch))' => 'pages#books'
-  	match 'sync/:action' => 'sync'
-  	match 'logs/:action' => 'logs'
+    resources :books
+    match 'pages/:action' => 'pages'
+    match 'pages/books/:id(/:op(/:ch))' => 'pages#books'
+    match 'sync/:action' => 'sync'
+    match 'logs/:action' => 'logs'
     match 'pages/toplist/:id' => 'pages#toplist'
     match 'pages/collection_book/:id' => 'pages#collection_book'
     match 'activetion/(:action)' => 'activetion'
   end
 
-	scope '/~bkb4info' do
-	  namespace :reader do
-	  	resources :books
-	  	match 'pages/:action' => 'pages'
-	  	match 'pages/books/:id(/:op(/:ch))' => 'pages#books'
-	  	match 'sync/:action' => 'sync'
-	    match 'pages/history' => 'pages#history'
-	    match 'pages/toplist/:id' => 'pages#toplist'
-	  end
-	  namespace :channel do
-	  	match 'balances' => 'balances#index'
-	  end
-	 
-	end
+  scope '/~bkb4info' do
+    namespace :reader do
+      resources :books
+      match 'pages/:action' => 'pages'
+      match 'pages/books/:id(/:op(/:ch))' => 'pages#books'
+      match 'sync/:action' => 'sync'
+      match 'pages/history' => 'pages#history'
+      match 'pages/toplist/:id' => 'pages#toplist'
+    end
+    namespace :channel do
+      match 'balances' => 'balances#index'
+    end
+   
+  end
 
   
   namespace :channel do
-  	match 'balances' => 'balances#index'
+    match 'balances' => 'balances#index'
   end
   
   

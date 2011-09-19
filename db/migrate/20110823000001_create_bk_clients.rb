@@ -5,10 +5,12 @@ class CreateBkClients < ActiveRecord::Migration
     	t.integer :user_id
     	t.integer :imsi
     	t.integer :imei
+    	t.integer :active_count, :default => 0
+    	t.string :channel
     	t.string :timestamp
     	t.string :mobile_type
     	t.string :screen_width
-    	t.string :screen_height
+    	t.string :screen_height	
     end
   end
 

@@ -2,7 +2,7 @@
 <page>
 	<header>热门书籍</header>
 	<content>
-	<% @hot_books.each do |b|
+	<% @botsites.each do |b|
 		chs = BookChapter.where(['book_id=?', b.id]).count
 		@books_id= b.id
 		 %>
