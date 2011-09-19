@@ -48,7 +48,7 @@ class Reader::PagesController < Spree::BaseController
 		render 'history.xml.erb'
 	end
 	def hot_books
-	  @botsites = BkHotsite.order('rank');
+	  @botsites = Book.order('views desc').limit(10);
 		render 'hotsite.xml.erb'
 	end
 	def paid_books
@@ -97,7 +97,7 @@ class Reader::PagesController < Spree::BaseController
       BkHistory.add_history(params[:client_id], @book.id, @chapter.chapterorder)
 			render 'book_chapter.xml.erb'
 		else
-		  @book..update_attributes(:views => (@book.views + 1)) 
+		  @book.update_attributes(:views => (@book.views + 1)) 
 			render 'book_cover.xml.erb'
 		end
 	end
@@ -107,5 +107,12 @@ class Reader::PagesController < Spree::BaseController
     @bk_toplists =BkToplist.where(['bk_hotsite_id=?',params[:id]]).order('rank');
     render 'toplist.xml.erb'
   end
-	
+  
+	def collection_book
+	  @bb= BkFavorite.where(['client_id=? and book_id=?',params[:client_id],params[:id]])
+	  if @bb.count == 0
+  	  @istrue=BkFavorite.add_favorite(params[:client_id],params[:id]) 
+	  end
+	    render 'collection_book.xml.erb'
+	end
 end

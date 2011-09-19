@@ -2,14 +2,21 @@
 <page>
 	<header>收藏结果</header>
 	<content>
-	
+	<% if @istrue == true %>
 		<link>
 			<text>收藏成功</text>
-			<desc>请查看我的书架</desc>
+			<desc>点此进入我的书架</desc>
 			<url>favorite</url>
 		
 		</link>
-
+	<% else %>
+		<link>
+				<text>您已经收藏过此书</text>
+				<desc>请查看我的书架</desc>
+				<url>favorite</url>
+			
+			</link>
+		<% end %>
 	</content>
 	<menu>
 		<link><text>1. 搜索图书</text><url>CMD_SEARCH</url></link>
