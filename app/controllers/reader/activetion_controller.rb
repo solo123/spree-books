@@ -13,4 +13,4 @@ class Reader::ActivetionController < ApplicationController
        @bkc.update_attributes(:active_count => (@bkc.active_count + 1)) 
     end
 end
- 
+  
