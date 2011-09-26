@@ -3,14 +3,14 @@
 	<header>查找结果</header>
 	<content>
 		<% if @books %>
-		<% @books.each do |b| -%> 
+		<% @books.each do |b| %> 
 		<link>
 			<arrow>1</arrow>
 			<text><%= b.bookname %></text>
 			<desc>共<%= b.book_chapters.length %>章</desc>
 			<url>books/<%= b.id %></url>
 		</link>
-		<% end -%>
+		<% end %>
 		<% end %>
 	</content>
 	<menu>
