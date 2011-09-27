@@ -63,10 +63,10 @@ class Reader::PagesController < Spree::BaseController
 	end
 	
 	def search
+	  require 'iconv'
 	  iconv = Iconv.new "utf-8//IGNORE", "GBK"
 	  @books = nil 
 	  if params[:s]    
-	     require 'iconv'
        @books = Book.where(['(bookname like ?) or (author like ?)', "%#{iconv.iconv(params[:s])}%","%#{iconv.iconv(params[:s])}%"]).order('bookname').limit(200)
 	  end
 	  render 'books.xml.erb'
